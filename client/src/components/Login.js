@@ -1,6 +1,7 @@
 import React from "react";
 import { login } from "../store/Actions/authActions";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 class Login extends React.Component {
   constructor(props) {
@@ -23,6 +24,7 @@ class Login extends React.Component {
     this.setState({ password: e.target.value });
   };
   render() {
+    if (this.props.loggedIn) return <Redirect to="/"></Redirect>;
     const { userName, password } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
@@ -42,7 +44,9 @@ class Login extends React.Component {
   }
 }
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    loggedIn: !!state.auth.id,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {

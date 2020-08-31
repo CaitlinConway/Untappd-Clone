@@ -23,12 +23,13 @@ export const login = (username, password) => async (dispatch) => {
     },
     body: JSON.stringify({ username, password }),
   });
-  const user = await res.json();
-  dispatch(setUser(user));
-  res.data = user;
+  res.data = await res.json();
+  if (res.ok) {
+    dispatch(setUser(res.data.user));
+  }
   return res;
 };
-
+window.login = login;
 export const logout = () => async (dispatch) => {
   const res = fetch("api/users/session", {
     method: "DELETE",

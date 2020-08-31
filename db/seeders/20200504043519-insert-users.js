@@ -18,7 +18,7 @@ module.exports = {
       r({
         username: "DemoUser",
         email: "demo@example.com",
-        hashedPassword: "password",
+        hashedPassword: createPassword(),
       }),
       r({
         username: "Yusuke",

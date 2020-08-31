@@ -1,10 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Redirect } from "react-router-dom";
 import Login from "./components/Login.js";
-import { Provider } from "react-redux";
+import { Provider, connect } from "react-redux";
 import configureStore from "./store/configureStore";
+const store = configureStore();
+if (process.env.NODE_ENV !== "production") {
+  window.store = store;
+}
+
+const protectedRoute = ({ component: Component, loggedIn, ...rest }) => {
+  if (loggedIn) return <Route {...rest} component={Component} />;
+  else return <Redirect to="/login" />;
+};
+const mapStateToProps = (state) => {
+  return { loggedIn: !!state.auth.id };
+};
+
+const ConnectedProtectedRoute = connect(mapStateToProps, null)(protectedRoute);
 function App() {
-  const store = configureStore();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -24,9 +37,9 @@ function App() {
   return (
     <BrowserRouter>
       <Provider store={store}>
-        <Route exact path="/">
+        <ConnectedProtectedRoute exact path="/">
           <h1>My Home Page</h1>
-        </Route>
+        </ConnectedProtectedRoute>
         <Route exact path="/login" component={Login} />
       </Provider>
     </BrowserRouter>
