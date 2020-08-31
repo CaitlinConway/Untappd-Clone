@@ -12,7 +12,6 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 const protectedRoute = ({ component: Component, loggedIn, ...rest }) => {
-  debugger;
   if (loggedIn) return <Route {...rest} component={Component} />;
   else return <Redirect to="/login" />;
 };

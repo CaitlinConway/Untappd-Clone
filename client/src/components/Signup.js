@@ -4,7 +4,6 @@ import { signup } from "../store/Actions/authActions";
 import { TextField } from "@material-ui/core";
 class Signup extends React.Component {
   constructor(props) {
-    debugger;
     super(props);
     this.state = {
       userName: "",
@@ -27,36 +26,37 @@ class Signup extends React.Component {
     this.setState({ password: e.target.value });
   };
   render() {
-    const props = this.props;
-    debugger;
     const { userName, email, password } = this.state;
     return (
-      <div>
-        <form onSubmit={this.handleSubmit} className="login-form">
-          <TextField
-            type="text"
-            value={userName}
-            onChange={this.updateUserName}
-            placeholder="Username"
-          ></TextField>
-          <TextField
-            type="text"
-            value={email}
-            onChange={this.updateEmail}
-            placeholder="Email"
-          ></TextField>
-          <TextField
-            type="password"
-            value={password}
-            onChange={this.updatePassword}
-            placeholder="password"
-          ></TextField>
-          <div className="signup-button-div">
-            <button type="submit" className="button">
-              Sign Up!
-            </button>
-          </div>
-        </form>
+      <div className="login-page">
+        <div className="page-header">Untappd</div>
+        <div className="login-form-div">
+          <form onSubmit={this.handleSubmit} className="login-form">
+            <TextField
+              type="text"
+              value={userName}
+              onChange={this.updateUserName}
+              placeholder="Username"
+            ></TextField>
+            <TextField
+              type="text"
+              value={email}
+              onChange={this.updateEmail}
+              placeholder="Email"
+            ></TextField>
+            <TextField
+              type="password"
+              value={password}
+              onChange={this.updatePassword}
+              placeholder="password"
+            ></TextField>
+            <div className="log-in-button-div">
+              <button type="submit" className="button">
+                Sign Up!
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     );
   }
