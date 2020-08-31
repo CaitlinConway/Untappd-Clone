@@ -2,6 +2,8 @@ import React from "react";
 import { login } from "../store/Actions/authActions";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { Container, TextField, InputAdornment } from "@material-ui/core";
+import { AccountCircle } from "@material-ui/icons/AccountCircle";
 
 class Login extends React.Component {
   constructor(props) {
@@ -27,19 +29,30 @@ class Login extends React.Component {
     if (this.props.loggedIn) return <Redirect to="/"></Redirect>;
     const { userName, password } = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input
-          type="text"
-          value={userName}
-          onChange={this.updateUserName}
-        ></input>
-        <input
-          type="password"
-          value={password}
-          onChange={this.updatePassword}
-        ></input>
-        <button type="submit">Log In</button>
-      </form>
+      <div className="login-page">
+        <div className="page-header">Untappd</div>
+        <div className="login-form-div">
+          <form onSubmit={this.handleSubmit} className="login-form">
+            <TextField
+              type="text"
+              value={userName}
+              onChange={this.updateUserName}
+              placeholder="Username or Email"
+            ></TextField>
+            <TextField
+              type="password"
+              value={password}
+              onChange={this.updatePassword}
+              placeholder="password"
+            ></TextField>
+            <div className="log-in-button-div">
+              <button type="submit" className="log-in-button">
+                Log In
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     );
   }
 }

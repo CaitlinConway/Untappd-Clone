@@ -1,1 +1,41 @@
 /* TODO Add site wide styles */
+
+.page-header {
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 30px;
+  background-color: orange;
+  justify-content: center;
+  height: 50px;
+}
+.login-form {
+  display: flex;
+  max-width: 200px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 15px;
+  border: 2px solid orange;
+  box-shadow: 2px 2px;
+  border-radius: 10px;
+  background-color: rgb(228, 164, 46);
+}
+.login-form-div {
+  display: flex;
+  justify-content: center;
+  padding: 200px;
+}
+.log-in-button {
+  padding: 5px;
+  display: flex;
+  color: green;
+  background-color: orange;
+  font-weight: bold;
+}
+.log-in-button-div {
+  padding-top: 10px;
+}
+.login-page {
+  background: url(https://thumbor.thedailymeal.com/AXjKZTT1B2_avj41MMhaOycirA8=/870x565/https://www.thedailymeal.com/sites/default/files/slideshows/1871062/2218930/iStock-854848732.jpg);
+  background-size: cover;
+}
