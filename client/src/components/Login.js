@@ -36,6 +36,7 @@ class Login extends React.Component {
     return (
       <div className="login-page">
         <div className="page-header">Untappd</div>
+        <ul className="errors"></ul>
         <div className="login-form-div">
           <form onSubmit={this.handleSubmit} className="login-form">
             <TextField

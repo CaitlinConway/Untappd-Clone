@@ -31,6 +31,16 @@ export const login = (username, password) => async (dispatch) => {
     body: JSON.stringify({ username, password }),
   });
   res.data = await res.json();
+  console.log(res.data);
+  const { message } = res.data;
+  console.log(message);
+  const errorsContainer = document.querySelector(".errors");
+  errorsContainer.innerHTML = "";
+  if (message) {
+    const errorLi = document.createElement("li");
+    errorLi.innerHTML = message;
+    errorsContainer.appendChild(errorLi);
+  }
   if (res.ok) {
     dispatch(setUser(res.data.user));
   }
