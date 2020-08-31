@@ -36,6 +36,6 @@
   padding-top: 10px;
 }
 .login-page {
-  background: url(https://thumbor.thedailymeal.com/AXjKZTT1B2_avj41MMhaOycirA8=/870x565/https://www.thedailymeal.com/sites/default/files/slideshows/1871062/2218930/iStock-854848732.jpg);
+  background-image: url(https://thumbor.thedailymeal.com/AXjKZTT1B2_avj41MMhaOycirA8=/870x565/https://www.thedailymeal.com/sites/default/files/slideshows/1871062/2218930/iStock-854848732.jpg);
   background-size: cover;
 }
