@@ -6,18 +6,19 @@ class Signup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName: "",
+      username: "",
       email: "",
       password: "",
+      confirmPassword: "",
     };
   }
   handleSubmit = (e) => {
     e.preventDefault();
-    const { userName, email, password } = this.state;
-    this.props.signup(userName, email, password);
+    const { username, email, password, confirmPassword } = this.state;
+    this.props.signup(username, email, password, confirmPassword);
   };
-  updateUserName = (e) => {
-    this.setState({ userName: e.target.value });
+  updateUsername = (e) => {
+    this.setState({ username: e.target.value });
   };
   updateEmail = (e) => {
     this.setState({ email: e.target.value });
@@ -25,8 +26,11 @@ class Signup extends React.Component {
   updatePassword = (e) => {
     this.setState({ password: e.target.value });
   };
+  updateConfirmPassword = (e) => {
+    this.setState({ confirmPassword: e.target.value });
+  };
   render() {
-    const { userName, email, password } = this.state;
+    const { username, email, password, confirmPassword } = this.state;
     return (
       <div className="login-page">
         <div className="page-header">Untappd</div>
@@ -34,9 +38,9 @@ class Signup extends React.Component {
           <form onSubmit={this.handleSubmit} className="login-form">
             <TextField
               type="text"
-              value={userName}
-              onChange={this.updateUserName}
-              placeholder="Username"
+              value={username}
+              onChange={this.updateUsername}
+              placeholder="username"
             ></TextField>
             <TextField
               type="text"
@@ -48,6 +52,12 @@ class Signup extends React.Component {
               type="password"
               value={password}
               onChange={this.updatePassword}
+              placeholder="password"
+            ></TextField>
+            <TextField
+              type="password"
+              value={confirmPassword}
+              onChange={this.updateConfirmPassword}
               placeholder="password"
             ></TextField>
             <div className="log-in-button-div">
@@ -68,8 +78,8 @@ class Signup extends React.Component {
 // };
 const mapDispatchToProps = (dispatch) => {
   return {
-    signup: (userName, email, password) =>
-      dispatch(signup(userName, email, password)),
+    signup: (username, email, password, confirmPassword) =>
+      dispatch(signup(username, email, password, confirmPassword)),
   };
 };
 export default connect(null, mapDispatchToProps)(Signup);
