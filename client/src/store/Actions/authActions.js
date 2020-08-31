@@ -64,6 +64,17 @@ export const signup = (username, email, password, confirmPassword) => async (
     }),
   });
   res.data = await res.json();
+  const { error } = res.data;
+  console.log(error);
+  const errorsContainer = document.querySelector(".errors");
+  if (error) {
+    const errors = error.errors;
+    for (let error1 of errors) {
+      const errorLi = document.createElement("li");
+      errorLi.innerHTML = error1;
+      errorsContainer.appendChild(errorLi);
+    }
+  }
   console.log(res.data);
   if (res.ok) {
     dispatch(registerUser(res.data.user));

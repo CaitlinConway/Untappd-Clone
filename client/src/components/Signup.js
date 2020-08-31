@@ -16,7 +16,7 @@ class Signup extends React.Component {
     e.preventDefault();
     const { username, email, password, confirmPassword } = this.state;
     this.props.signup(username, email, password, confirmPassword);
-    window.location.href = "/";
+    // window.location.href = "/";
   };
   updateUsername = (e) => {
     this.setState({ username: e.target.value });
@@ -35,6 +35,7 @@ class Signup extends React.Component {
     return (
       <div className="login-page">
         <div className="page-header">Untappd</div>
+        <ul className="errors"></ul>
         <div className="login-form-div">
           <form onSubmit={this.handleSubmit} className="login-form">
             <TextField
