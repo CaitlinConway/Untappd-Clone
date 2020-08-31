@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { signup } from "../store/Actions/authActions";
+import { signup, login } from "../store/Actions/authActions";
 import { TextField } from "@material-ui/core";
 class Signup extends React.Component {
   constructor(props) {
@@ -12,10 +12,11 @@ class Signup extends React.Component {
       confirmPassword: "",
     };
   }
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
     const { username, email, password, confirmPassword } = this.state;
     this.props.signup(username, email, password, confirmPassword);
+    window.location.href = "/";
   };
   updateUsername = (e) => {
     this.setState({ username: e.target.value });
@@ -67,19 +68,26 @@ class Signup extends React.Component {
             </div>
           </form>
         </div>
+        <div className="no-account">
+          Already have an account?
+          <form action="/login">
+            <button> Log In!</button>
+          </form>
+        </div>
       </div>
     );
   }
 }
-// const mapStateToProps = (state) => {
-//   return {
-//     loggedIn: !!state.auth.id,
-//   };
-// };
+const mapStateToProps = (state) => {
+  return {
+    loggedIn: !!state.auth.id,
+  };
+};
 const mapDispatchToProps = (dispatch) => {
   return {
     signup: (username, email, password, confirmPassword) =>
       dispatch(signup(username, email, password, confirmPassword)),
+    login: (username, password) => dispatch(login(username, password)),
   };
 };
-export default connect(null, mapDispatchToProps)(Signup);
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);

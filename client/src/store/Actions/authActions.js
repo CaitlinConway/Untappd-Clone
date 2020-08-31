@@ -67,6 +67,7 @@ export const signup = (username, email, password, confirmPassword) => async (
   console.log(res.data);
   if (res.ok) {
     dispatch(registerUser(res.data.user));
+    dispatch(setUser(res.data.user));
   }
   return res;
 };
