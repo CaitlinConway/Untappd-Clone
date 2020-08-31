@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Redirect } from "react-router-dom";
 import Login from "./components/Login.js";
 import { Provider, connect } from "react-redux";
 import configureStore from "./store/configureStore";
+import { CssBaseline } from "@material-ui/core";
+
 const store = configureStore();
 if (process.env.NODE_ENV !== "production") {
   window.store = store;
@@ -35,14 +37,17 @@ function App() {
   if (loading) return null;
 
   return (
-    <BrowserRouter>
-      <Provider store={store}>
-        <ConnectedProtectedRoute exact path="/">
-          <h1>My Home Page</h1>
-        </ConnectedProtectedRoute>
-        <Route exact path="/login" component={Login} />
-      </Provider>
-    </BrowserRouter>
+    <>
+      <CssBaseline></CssBaseline>
+      <BrowserRouter>
+        <Provider store={store}>
+          <ConnectedProtectedRoute exact path="/">
+            <h1>My Home Page</h1>
+          </ConnectedProtectedRoute>
+          <Route exact path="/login" component={Login} />
+        </Provider>
+      </BrowserRouter>
+    </>
   );
 }
 
