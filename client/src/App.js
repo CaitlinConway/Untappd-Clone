@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Route, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import Login from "./components/Login.js";
 import { Provider, connect } from "react-redux";
 import configureStore from "./store/configureStore";
-import { CssBaseline, Button, TextField } from "@material-ui/core";
+import { CssBaseline } from "@material-ui/core";
+import Signup from "./components/Signup.js";
 
 const store = configureStore();
 if (process.env.NODE_ENV !== "production") {
@@ -11,6 +12,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 const protectedRoute = ({ component: Component, loggedIn, ...rest }) => {
+  debugger;
   if (loggedIn) return <Route {...rest} component={Component} />;
   else return <Redirect to="/login" />;
 };
@@ -19,6 +21,7 @@ const mapStateToProps = (state) => {
 };
 
 const ConnectedProtectedRoute = connect(mapStateToProps, null)(protectedRoute);
+
 function App() {
   const [loading, setLoading] = useState(true);
 
@@ -41,10 +44,13 @@ function App() {
       <CssBaseline></CssBaseline>
       <BrowserRouter>
         <Provider store={store}>
-          <ConnectedProtectedRoute exact path="/">
-            <h1>My Home Page</h1>
-          </ConnectedProtectedRoute>
-          <Route exact path="/login" component={Login} />
+          <Switch>
+            <Route path="/login" component={Login} />
+            <Route path="/signup" component={Signup} />
+            <ConnectedProtectedRoute exact path="/">
+              <h1>My Home Page</h1>
+            </ConnectedProtectedRoute>
+          </Switch>
         </Provider>
       </BrowserRouter>
     </>

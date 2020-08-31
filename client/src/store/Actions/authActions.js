@@ -1,6 +1,7 @@
 import Cookies from "js-cookie";
 export const SET_USER = "authentication/SET_USER";
 export const REMOVE_USER = "authentication/REMOVE_USER";
+export const REGISTER_USER = "authentication/REGISTER_USER";
 
 export const setUser = (user) => {
   return {
@@ -11,6 +12,12 @@ export const setUser = (user) => {
 export const removeUser = () => {
   return {
     type: REMOVE_USER,
+  };
+};
+export const registerUser = (user) => {
+  return {
+    type: REGISTER_USER,
+    user,
   };
 };
 
@@ -37,5 +44,25 @@ export const logout = () => async (dispatch) => {
   const user = await res.json();
   dispatch(removeUser());
   res.data = user;
+  return res;
+};
+
+export const signup = (userName, email, password) => async (dispatch) => {
+  const res = await fetch("/api/users", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: {
+      userName,
+      password,
+      email,
+    },
+  });
+  res.data = await res.json();
+  if (res.ok) {
+    debugger;
+    dispatch(registerUser(res.data.user));
+  }
   return res;
 };
