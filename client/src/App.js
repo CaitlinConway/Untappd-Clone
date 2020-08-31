@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { BrowserRouter, Route } from "react-router-dom";
+import Login from "./components/Login";
 function App() {
   const [loading, setLoading] = useState(true);
 
@@ -11,7 +12,7 @@ function App() {
         res.data = await res.json(); // current user info
       }
       setLoading(false);
-    }
+    };
     loadUser();
   }, []);
 
@@ -19,9 +20,10 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Route path="/">
+      <Route exact path="/">
         <h1>My Home Page</h1>
       </Route>
+      <Route exact path="/login" component={Login} />
     </BrowserRouter>
   );
 }
