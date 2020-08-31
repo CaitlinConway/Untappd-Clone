@@ -2,8 +2,7 @@ import React from "react";
 import { login } from "../store/Actions/authActions";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { Container, TextField, InputAdornment } from "@material-ui/core";
-import { AccountCircle } from "@material-ui/icons/AccountCircle";
+import { TextField } from "@material-ui/core";
 
 class Login extends React.Component {
   constructor(props) {
@@ -24,6 +23,12 @@ class Login extends React.Component {
   };
   updatePassword = (e) => {
     this.setState({ password: e.target.value });
+  };
+  demoLogin = (e) => {
+    e.preventDefault();
+    const userName = "DemoUser";
+    const password = "password";
+    this.props.login(userName, password);
   };
   render() {
     if (this.props.loggedIn) return <Redirect to="/"></Redirect>;
@@ -46,10 +51,19 @@ class Login extends React.Component {
               placeholder="password"
             ></TextField>
             <div className="log-in-button-div">
-              <button type="submit" className="log-in-button">
+              <button type="submit" className="button">
                 Log In
               </button>
             </div>
+          </form>
+        </div>
+        <div className="no-account">
+          Don't have an account?
+          <form onSubmit={this.demoLogin} className="demo-user-form">
+            <button type="submit">Log in as demo user</button>
+          </form>
+          <form action="/signup">
+            <button> Sign up!</button>
           </form>
         </div>
       </div>

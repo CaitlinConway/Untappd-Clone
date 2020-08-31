@@ -25,12 +25,13 @@
   justify-content: center;
   padding: 200px;
 }
-.log-in-button {
+button {
   padding: 5px;
   display: flex;
-  color: green;
+  color: black;
   background-color: orange;
   font-weight: bold;
+  border-radius: 10px;
 }
 .log-in-button-div {
   padding-top: 10px;
@@ -38,4 +39,12 @@
 .login-page {
   background-image: url(https://thumbor.thedailymeal.com/AXjKZTT1B2_avj41MMhaOycirA8=/870x565/https://www.thedailymeal.com/sites/default/files/slideshows/1871062/2218930/iStock-854848732.jpg);
   background-size: cover;
+}
+.no-account {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: orange;
+  opacity: 0.7;
+  padding: 30px;
+  align-items: center;
 }
