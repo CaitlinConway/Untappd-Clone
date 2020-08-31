@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
-import Login from "./components/Login";
+import Login from "./components/Login.js";
+import { Provider } from "react-redux";
+import configureStore from "./store/configureStore";
 function App() {
+  const store = configureStore();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -20,10 +23,12 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Route exact path="/">
-        <h1>My Home Page</h1>
-      </Route>
-      <Route exact path="/login" component={Login} />
+      <Provider store={store}>
+        <Route exact path="/">
+          <h1>My Home Page</h1>
+        </Route>
+        <Route exact path="/login" component={Login} />
+      </Provider>
     </BrowserRouter>
   );
 }

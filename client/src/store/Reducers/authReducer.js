@@ -1,5 +1,5 @@
 import React from "react";
-import { setUser, login } from "../Actions/authActions";
+import { SET_USER, REMOVE_USER } from "../Actions/authActions";
 export default function authReducer(state = {}, action) {
   switch (action.type) {
     case SET_USER:
@@ -7,6 +7,6 @@ export default function authReducer(state = {}, action) {
     case REMOVE_USER:
       return {};
     default:
-      break;
+      return state;
   }
 }

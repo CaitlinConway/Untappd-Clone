@@ -1,4 +1,4 @@
-import React from "react";
+import Cookies from "js-cookie";
 export const SET_USER = "authentication/SET_USER";
 export const REMOVE_USER = "authentication/REMOVE_USER";
 
@@ -11,15 +11,15 @@ export const setUser = (user) => {
 export const removeUser = () => {
   return {
     type: REMOVE_USER,
-    user,
   };
 };
 
 export const login = (username, password) => async (dispatch) => {
-  const res = fetch("api/users/token", {
+  const res = await fetch("/api/session", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
+      "XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
     },
     body: JSON.stringify({ username, password }),
   });
