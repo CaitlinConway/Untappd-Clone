@@ -34,6 +34,9 @@ class AddReview extends React.Component {
     const { beerName, breweryName, rating, comments } = this.state;
     return (
       <>
+        <div className="error-container">
+          <ul id="errors" className="errors"></ul>
+        </div>
         <form onSubmit={this.handleSubmit} className="review-form">
           <input
             type="text"

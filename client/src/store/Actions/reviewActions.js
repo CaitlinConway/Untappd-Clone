@@ -39,6 +39,17 @@ export const addNewReview = (
   });
   res.data = await res.json();
   console.log(res.data);
+  const { error } = res.data;
+  const errorsContainer = document.getElementById("errors");
+  errorsContainer.innerHTML = "";
+  errorsContainer.style.display = "none";
+  if (error) {
+    errorsContainer.style.display = "flex";
+    let message = error.errors;
+    const errorLi = document.createElement("li");
+    errorLi.innerHTML = message;
+    errorsContainer.appendChild(errorLi);
+  }
   if (res.ok) {
     dispatch(addReview(res.data.review));
   }

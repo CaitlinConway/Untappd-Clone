@@ -8,7 +8,7 @@ const router = express.Router();
 const validatePost = [
   check("beerName", "must have a beer name").exists(),
   check("breweryName", "must have a brewery name").exists(),
-  check("rating", "must be a number between 1 and 5").exists(),
+  check("rating", "must be a number between 1 and 5").exists().isNumeric(),
 ];
 
 router.get(

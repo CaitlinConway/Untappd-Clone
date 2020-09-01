@@ -31,12 +31,9 @@ export const login = (username, password) => async (dispatch) => {
     body: JSON.stringify({ username, password }),
   });
   res.data = await res.json();
-  console.log(res.data);
   const { message } = res.data;
-  console.log(message);
   const errorsContainer = document.getElementById("errors");
   errorsContainer.innerHTML = "";
-  console.log(errorsContainer);
   if (message) {
     errorsContainer.style.display = "flex";
     const errorLi = document.createElement("li");
