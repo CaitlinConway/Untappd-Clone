@@ -31,12 +31,9 @@ export const login = (username, password) => async (dispatch) => {
     body: JSON.stringify({ username, password }),
   });
   res.data = await res.json();
-  console.log(res.data);
   const { message } = res.data;
-  console.log(message);
   const errorsContainer = document.getElementById("errors");
   errorsContainer.innerHTML = "";
-  console.log(errorsContainer);
   if (message) {
     errorsContainer.style.display = "flex";
     const errorLi = document.createElement("li");
@@ -48,9 +45,9 @@ export const login = (username, password) => async (dispatch) => {
   }
   return res;
 };
-window.login = login;
+
 export const logout = () => async (dispatch) => {
-  const res = fetch("api/users/session", {
+  const res = fetch("api/session", {
     method: "DELETE",
   });
   const user = await res.json();
@@ -91,10 +88,6 @@ export const signup = (username, email, password, confirmPassword) => async (
   }
   if (res.ok) {
     dispatch(registerUser(res.data.user));
-    // console.log(res.data.user);
-    // const { username, password } = res.data.user;
-    // await login(username, password);
-    // console.log("test");
   }
   return res;
 };

@@ -5,7 +5,8 @@ import { Provider, connect } from "react-redux";
 import configureStore from "./store/configureStore";
 import { CssBaseline } from "@material-ui/core";
 import Signup from "./components/Signup.js";
-
+import HomePage from "./components/HomePage.js";
+import Logout from "./components/Logout";
 const store = configureStore();
 if (process.env.NODE_ENV !== "production") {
   window.store = store;
@@ -46,8 +47,9 @@ function App() {
           <Switch>
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
+            <Route path="/logout" component={Logout} />
             <ConnectedProtectedRoute exact path="/">
-              <h1>My Home Page</h1>
+              <HomePage></HomePage>
             </ConnectedProtectedRoute>
           </Switch>
         </Provider>

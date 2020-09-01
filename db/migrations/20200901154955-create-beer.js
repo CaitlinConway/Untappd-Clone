@@ -11,7 +11,6 @@ module.exports = {
       name: {
         type: Sequelize.STRING(255),
         allowNull: false,
-        unique: true,
       },
       breweryId: {
         type: Sequelize.INTEGER,
