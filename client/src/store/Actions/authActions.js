@@ -45,9 +45,9 @@ export const login = (username, password) => async (dispatch) => {
   }
   return res;
 };
-window.login = login;
+
 export const logout = () => async (dispatch) => {
-  const res = fetch("api/users/session", {
+  const res = fetch("api/session", {
     method: "DELETE",
   });
   const user = await res.json();
@@ -88,10 +88,6 @@ export const signup = (username, email, password, confirmPassword) => async (
   }
   if (res.ok) {
     dispatch(registerUser(res.data.user));
-    // console.log(res.data.user);
-    // const { username, password } = res.data.user;
-    // await login(username, password);
-    // console.log("test");
   }
   return res;
 };

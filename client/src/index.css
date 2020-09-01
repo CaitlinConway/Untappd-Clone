@@ -63,3 +63,15 @@ button {
   display: flex;
   justify-content: center;
 }
+.add-review-form-div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: right;
+  padding: 10px;
+}
+.review-button-div {
+  padding-top: 10px;
+}
+.logout-button-div {
+  padding: 10px;
+}

@@ -37,39 +37,41 @@ class AddReview extends React.Component {
         <div className="error-container">
           <ul id="errors" className="errors"></ul>
         </div>
-        <form onSubmit={this.handleSubmit} className="review-form">
-          <input
-            type="text"
-            value={beerName}
-            onChange={this.updateBeerName}
-            placeholder="beer name"
-          ></input>
-          <input
-            type="text"
-            value={breweryName}
-            onChange={this.updateBreweryName}
-            placeholder="brewery name"
-          ></input>
-          <input
-            type="number"
-            min="0"
-            max="5"
-            value={rating}
-            onChange={this.updateRating}
-            placeholder="rating"
-          ></input>
-          <input
-            type="text"
-            value={comments}
-            onChange={this.updateComments}
-            placeholder="comments"
-          ></input>
-          <div className="review-button-div">
-            <button type="submit" className="button">
-              Add review!
-            </button>
-          </div>
-        </form>
+        <div className="add-review-form-div">
+          <form onSubmit={this.handleSubmit} className="review-form">
+            <TextField
+              type="text"
+              value={beerName}
+              onChange={this.updateBeerName}
+              placeholder="beer name"
+            ></TextField>
+            <TextField
+              type="text"
+              value={breweryName}
+              onChange={this.updateBreweryName}
+              placeholder="brewery name"
+            ></TextField>
+            <TextField
+              type="number"
+              min="0"
+              max="5"
+              value={rating}
+              onChange={this.updateRating}
+              placeholder="rating"
+            ></TextField>
+            <TextField
+              type="text"
+              value={comments}
+              onChange={this.updateComments}
+              placeholder="comments"
+            ></TextField>
+            <div className="review-button-div">
+              <button type="submit" className="button">
+                Add review!
+              </button>
+            </div>
+          </form>
+        </div>
       </>
     );
   }
