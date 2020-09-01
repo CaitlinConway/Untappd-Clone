@@ -34,8 +34,10 @@ export const login = (username, password) => async (dispatch) => {
   console.log(res.data);
   const { message } = res.data;
   console.log(message);
-  const errorsContainer = document.querySelector(".errors");
+  const errorsContainer = document.getElementById("errors");
   errorsContainer.innerHTML = "";
+  errorsContainer.style.display = "flex";
+  console.log(errorsContainer);
   if (message) {
     const errorLi = document.createElement("li");
     errorLi.innerHTML = message;
@@ -76,7 +78,9 @@ export const signup = (username, email, password, confirmPassword) => async (
   res.data = await res.json();
   const { error } = res.data;
   console.log(error);
-  const errorsContainer = document.querySelector(".errors");
+  const errorsContainer = document.getElementById("errors");
+  errorsContainer.innerHTML = "";
+  errorsContainer.style.display = "flex";
   if (error) {
     const errors = error.errors;
     for (let error1 of errors) {

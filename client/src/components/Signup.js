@@ -35,7 +35,9 @@ class Signup extends React.Component {
     return (
       <div className="login-page">
         <div className="page-header">Untappd</div>
-        <ul className="errors"></ul>
+        <div className="error-container">
+          <ul id="errors" className="errors"></ul>
+        </div>
         <div className="login-form-div">
           <form onSubmit={this.handleSubmit} className="login-form">
             <TextField
