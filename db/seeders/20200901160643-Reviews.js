@@ -17,10 +17,9 @@ module.exports = {
       [
         {
           beerId: 1,
-          userId: 1,
+          userId: 2,
           rating: 4.5,
           comments: "A refreshing cream ale!",
-
           createdAt: new Date(),
           updatedAt: new Date(),
         },

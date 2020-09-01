@@ -1,12 +1,14 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
+const { check } = require("express-validator");
 const { User, Beer, Review, Brewery } = require("../../db/models");
 const { handleValidationErrors } = require("../util/validation");
 const router = express.Router();
 
 const validatePost = [
-  check("beerId", "must have a beer name").exists(),
-  check("rating", "must be a number between 1 and 5").exists().isNumeric(),
+  check("beerName", "must have a beer name").exists(),
+  check("breweryName", "must have a brewery name").exists(),
+  check("rating", "must be a number between 1 and 5").exists(),
 ];
 
 router.get(
@@ -62,8 +64,36 @@ router.post(
   validatePost,
   handleValidationErrors,
   asyncHandler(async function (req, res) {
-    const { beerId, userId, rating, comments } = req.body;
-    const review = await Review.create({ beerId, userId, rating, comments });
+    const { beerName, breweryName, userId, rating, comments } = req.body;
+    let beerId = await Beer.findOne({
+      where: {
+        name: beerName,
+      },
+    }).id;
+    let breweryId = await Brewery.findOne({
+      where: {
+        name: breweryName,
+      },
+    }).id;
+    if (!breweryId) {
+      brewery = await Brewery.create({
+        name: breweryName,
+      });
+      breweryId = brewery.id;
+    }
+    if (!beerId) {
+      beer = await Beer.create({
+        name: beerName,
+        breweryId: breweryId,
+      });
+      beerId = beer.id;
+    }
+    const review = await Review.create({
+      beerId,
+      userId,
+      rating,
+      comments,
+    });
     return res.json({
       review,
     });

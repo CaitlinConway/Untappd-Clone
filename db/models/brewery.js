@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
     Brewery.hasMany(models.Beer, {
       foreignKey: "breweryId",
     });
+    Brewery.hasMany(models.Review, {
+      foreignKey: "breweryId",
+    });
   };
   return Brewery;
 };
