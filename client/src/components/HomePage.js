@@ -1,6 +1,7 @@
 import React from "react";
 import AddReview from "./AddReview";
 import Logout from "./Logout";
+import Reviews from "./Reviews";
 class HomePage extends React.Component {
   constructor(props) {
     super(props);
@@ -10,6 +11,7 @@ class HomePage extends React.Component {
       <>
         <div className="page-header">Untappd</div>
         <AddReview></AddReview>
+        <Reviews></Reviews>
         <Logout></Logout>
       </>
     );

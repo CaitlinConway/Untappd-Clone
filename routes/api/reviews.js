@@ -14,7 +14,19 @@ const validatePost = [
 router.get(
   "/",
   asyncHandler(async function (_req, res, _next) {
-    const reviews = await Review.findAll();
+    const reviews = await Review.findAll({
+      include: [
+        {
+          model: Beer,
+          attributes: ["id", "name", "breweryId"],
+        },
+        {
+          model: User,
+          attributes: ["id", "username"],
+        },
+      ],
+      order: [["createdAt", "DESC"]],
+    });
     res.json({ reviews });
   })
 );

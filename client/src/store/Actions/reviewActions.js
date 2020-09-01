@@ -3,6 +3,7 @@ import Cookies from "js-cookie";
 export const ADD_REVIEW = "review/ADD_REVIEW";
 export const DELETE_REVIEW = "review/DELETE_REVIEW";
 export const UPDATE_REVIEW = "review/UPDATE_REVIEW";
+export const GET_REVIEWS = "review/GET_REVIEWS";
 
 export const addReview = (review) => {
   return {
@@ -19,6 +20,12 @@ export const updateReview = (review) => {
   return {
     type: UPDATE_REVIEW,
     review,
+  };
+};
+export const fetchReviews = (reviews) => {
+  return {
+    type: GET_REVIEWS,
+    reviews,
   };
 };
 
@@ -58,4 +65,14 @@ export const addNewReview = (
     dispatch(addReview(res.data.review));
   }
   return res;
+};
+
+export const getAllReviews = () => async (dispatch) => {
+  const res = await fetch("/api/reviews");
+  let data = await res.json();
+  console.log(data);
+  if (res.ok) {
+    dispatch(fetchReviews(data.reviews));
+  }
+  return data.reviews;
 };

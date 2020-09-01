@@ -2,6 +2,7 @@ import React from "react";
 import { TextField } from "@material-ui/core";
 import { addNewReview } from "../store/Actions/reviewActions";
 import { connect } from "react-redux";
+import { Modal } from "@material-ui/core";
 class AddReview extends React.Component {
   constructor(props) {
     super(props);
