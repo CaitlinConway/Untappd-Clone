@@ -52,14 +52,14 @@ class AddReview extends React.Component {
               onChange={this.updateBreweryName}
               placeholder="brewery name"
             ></TextField>
-            <TextField
+            <input
               type="number"
               min="0"
               max="5"
               value={rating}
               onChange={this.updateRating}
               placeholder="rating"
-            ></TextField>
+            ></input>
             <TextField
               type="text"
               value={comments}

@@ -45,7 +45,6 @@ export const addNewReview = (
     body: JSON.stringify({ beerName, breweryName, userId, rating, comments }),
   });
   res.data = await res.json();
-  console.log(res.data);
   const { error } = res.data;
   const errorsContainer = document.getElementById("errors");
   errorsContainer.innerHTML = "";
@@ -54,7 +53,6 @@ export const addNewReview = (
     errorsContainer.style.display = "flex";
     let errors = error.errors;
     for (let i = 0; i < errors.length; ++i) {
-      console.log(errors);
       let message = errors[i];
       const errorLi = document.createElement("li");
       errorLi.innerHTML = message;
@@ -70,7 +68,6 @@ export const addNewReview = (
 export const getAllReviews = () => async (dispatch) => {
   const res = await fetch("/api/reviews");
   let data = await res.json();
-  console.log(data);
   if (res.ok) {
     dispatch(fetchReviews(data.reviews));
   }
