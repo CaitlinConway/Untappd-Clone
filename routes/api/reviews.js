@@ -5,7 +5,7 @@ const { handleValidationErrors } = require("../util/validation");
 const router = express.Router();
 
 const validatePost = [
-  check("beerId", "must be between 5 and 70 characters").exists(),
+  check("beerId", "must have a beer name").exists(),
   check("rating", "must be a number between 1 and 5").exists().isNumeric(),
 ];
 
