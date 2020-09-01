@@ -36,9 +36,9 @@ export const login = (username, password) => async (dispatch) => {
   console.log(message);
   const errorsContainer = document.getElementById("errors");
   errorsContainer.innerHTML = "";
-  errorsContainer.style.display = "flex";
   console.log(errorsContainer);
   if (message) {
+    errorsContainer.style.display = "flex";
     const errorLi = document.createElement("li");
     errorLi.innerHTML = message;
     errorsContainer.appendChild(errorLi);
@@ -77,11 +77,11 @@ export const signup = (username, email, password, confirmPassword) => async (
   });
   res.data = await res.json();
   const { error } = res.data;
-  console.log(error);
   const errorsContainer = document.getElementById("errors");
   errorsContainer.innerHTML = "";
-  errorsContainer.style.display = "flex";
+  errorsContainer.style.display = "none";
   if (error) {
+    errorsContainer.style.display = "flex";
     const errors = error.errors;
     for (let error1 of errors) {
       const errorLi = document.createElement("li");
@@ -89,10 +89,12 @@ export const signup = (username, email, password, confirmPassword) => async (
       errorsContainer.appendChild(errorLi);
     }
   }
-  console.log(res.data);
   if (res.ok) {
     dispatch(registerUser(res.data.user));
-    dispatch(setUser(res.data.user));
+    // console.log(res.data.user);
+    // const { username, password } = res.data.user;
+    // await login(username, password);
+    // console.log("test");
   }
   return res;
 };

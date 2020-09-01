@@ -16,7 +16,10 @@ class Signup extends React.Component {
     e.preventDefault();
     const { username, email, password, confirmPassword } = this.state;
     this.props.signup(username, email, password, confirmPassword);
-    // window.location.href = "/";
+    const errorsContainer = document.getElementById("errors");
+    if (errorsContainer.style.display === "none") {
+      window.location.href = "/";
+    }
   };
   updateUsername = (e) => {
     this.setState({ username: e.target.value });
