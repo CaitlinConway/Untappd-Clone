@@ -45,10 +45,14 @@ export const addNewReview = (
   errorsContainer.style.display = "none";
   if (error) {
     errorsContainer.style.display = "flex";
-    let message = error.errors;
-    const errorLi = document.createElement("li");
-    errorLi.innerHTML = message;
-    errorsContainer.appendChild(errorLi);
+    let errors = error.errors;
+    for (let i = 0; i < errors.length; ++i) {
+      console.log(errors);
+      let message = errors[i];
+      const errorLi = document.createElement("li");
+      errorLi.innerHTML = message;
+      errorsContainer.appendChild(errorLi);
+    }
   }
   if (res.ok) {
     dispatch(addReview(res.data.review));
