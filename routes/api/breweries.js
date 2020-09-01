@@ -11,5 +11,12 @@ router.get(
     res.json({ breweries });
   })
 );
-
+router.get(
+  "/:id(\\d+)",
+  asyncHandler(async function (_req, res, _next) {
+    const id = parseInt(req.params.id, 10);
+    const brewery = await Brewery.findByPk(id);
+    res.json({ brewery });
+  })
+);
 module.exports = router;

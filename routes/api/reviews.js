@@ -44,7 +44,7 @@ router.get(
   "/:id(\\d+)",
   asyncHandler(async function (_req, res, _next) {
     const id = parseInt(req.params.id, 10);
-    const review = await Review.Review.findByPk(id);
+    const review = await Review.findByPk(id);
     res.json({ review });
   })
 );
