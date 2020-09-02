@@ -47,7 +47,6 @@ export const addNewReview = (
   });
 
   res.data = await res.json();
-  debugger;
   const { error } = res.data;
   const errorsContainer = document.getElementById("errors");
   errorsContainer.innerHTML = "";
