@@ -6,7 +6,6 @@ export const UPDATE_REVIEW = "review/UPDATE_REVIEW";
 export const GET_REVIEWS = "review/GET_REVIEWS";
 
 export const addReview = (review) => {
-  debugger;
   return {
     type: ADD_REVIEW,
     review,
@@ -38,7 +37,6 @@ export const addNewReview = (
   rating,
   comments
 ) => async (dispatch) => {
-  debugger;
   const res = await fetch("/api/reviews", {
     method: "POST",
     headers: {

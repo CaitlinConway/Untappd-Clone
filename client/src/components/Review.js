@@ -5,7 +5,6 @@ class Review extends React.Component {
   constructor(props) {
     super(props);
     const review = this.props.review;
-    debugger;
     this.state = {
       beerName: review.Beer.name,
       rating: review.rating,

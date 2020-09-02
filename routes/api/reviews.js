@@ -27,7 +27,6 @@ router.get(
       ],
       order: [["createdAt", "DESC"]],
     });
-    console.log("reviews", reviews);
     res.json({ reviews });
   })
 );
@@ -59,9 +58,7 @@ router.get(
   "/:id(\\d+)",
   asyncHandler(async function (req, res, next) {
     const id = parseInt(req.params.id, 10);
-    const review = await Review.findOne({
-      where: id,
-
+    const reviews = await Review.findAll({
       include: [
         {
           model: Beer,
@@ -73,6 +70,7 @@ router.get(
         },
       ],
     });
+    const review = reviews[id];
     res.json({ review });
   })
 );
@@ -93,16 +91,19 @@ router.post(
   handleValidationErrors,
   asyncHandler(async function (req, res) {
     const { beerName, breweryName, userId, rating, comments } = req.body;
-    let beerId = await Beer.findOne({
+    let beer = await Beer.findOne({
       where: {
         name: beerName,
       },
-    }).id;
-    let breweryId = await Brewery.findOne({
+    });
+    let beerId = beer.id;
+    let brewery = await Brewery.findOne({
       where: {
         name: breweryName,
       },
-    }).id;
+    });
+    let breweryId = brewery.id;
+    console.log(beerId, breweryId);
     if (!breweryId) {
       brewery = await Brewery.create({
         name: breweryName,

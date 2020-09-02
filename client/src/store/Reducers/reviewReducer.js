@@ -8,7 +8,6 @@ export default function reviewReducer(state = {}, action) {
   let newState = Object.assign({}, state);
   switch (action.type) {
     case ADD_REVIEW:
-      debugger;
       newState[action.review.id] = action.review;
       return newState;
     case DELETE_REVIEW:
