@@ -80,6 +80,7 @@ class AddReview extends React.Component {
 const mapStateToProps = (state) => {
   return {
     userId: state.auth.id,
+    reviews: state.reviews,
   };
 };
 

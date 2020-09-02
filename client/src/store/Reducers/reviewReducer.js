@@ -8,22 +8,25 @@ export default function reviewReducer(state = {}, action) {
   let newState = Object.assign({}, state);
   switch (action.type) {
     case ADD_REVIEW:
-      return action.review;
+      debugger;
+      newState[action.review.id] = action.review;
+      return newState;
     case DELETE_REVIEW:
-      return {};
+      delete newState[action.reviewId];
+      return newState;
     case UPDATE_REVIEW:
       return action.review;
     case GET_REVIEWS:
-      // action.reviews.forEach((review) => {
-      //   const reviewClone = {};
-      //   Object.keys(review).forEach((key) => {
-      //     if (key !== "User") reviewClone[key] = review[key];
-      //   });
-      //   newState[reviewClone.id] = reviewClone;
-      // });
-      // return newState;
-
-      return action.reviews;
+      action.reviews.forEach((review) => {
+        // const reviewClone = {};
+        // Object.keys(review).forEach((key) => {
+        //   reviewClone[key] = review[key];
+        // });
+        newState[review.id] = review;
+      });
+      return newState;
+    // return Object.assign({}, newState, action.reviews);
+    // return newState;
     default:
       return state;
   }

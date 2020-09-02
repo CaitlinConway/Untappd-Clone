@@ -6,15 +6,16 @@ export const UPDATE_REVIEW = "review/UPDATE_REVIEW";
 export const GET_REVIEWS = "review/GET_REVIEWS";
 
 export const addReview = (review) => {
+  debugger;
   return {
     type: ADD_REVIEW,
     review,
   };
 };
-export const removeReview = () => {
-  debugger;
+export const removeReview = (reviewId) => {
   return {
     type: DELETE_REVIEW,
+    reviewId,
   };
 };
 export const updateReview = (review) => {
@@ -37,6 +38,7 @@ export const addNewReview = (
   rating,
   comments
 ) => async (dispatch) => {
+  debugger;
   const res = await fetch("/api/reviews", {
     method: "POST",
     headers: {
@@ -45,7 +47,9 @@ export const addNewReview = (
     },
     body: JSON.stringify({ beerName, breweryName, userId, rating, comments }),
   });
+
   res.data = await res.json();
+  debugger;
   const { error } = res.data;
   const errorsContainer = document.getElementById("errors");
   errorsContainer.innerHTML = "";
@@ -60,9 +64,8 @@ export const addNewReview = (
       errorsContainer.appendChild(errorLi);
     }
   }
-  if (res.ok) {
-    dispatch(addReview(res.data.review));
-  }
+  dispatch(addReview(res.data.review));
+
   return res;
 };
 
@@ -76,7 +79,6 @@ export const getAllReviews = () => async (dispatch) => {
 };
 
 export const deleteReview = (review) => async (dispatch) => {
-  debugger;
   const res = await fetch(`/api/reviews/${review.id}`, {
     headers: {
       _csrf: Cookies.get("_csrf"),
@@ -84,8 +86,8 @@ export const deleteReview = (review) => async (dispatch) => {
     },
     method: "DELETE",
   });
-  debugger;
+
   if (res.ok) {
-    dispatch(removeReview());
+    dispatch(removeReview(review.id));
   }
 };

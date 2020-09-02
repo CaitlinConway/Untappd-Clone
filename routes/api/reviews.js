@@ -27,6 +27,7 @@ router.get(
       ],
       order: [["createdAt", "DESC"]],
     });
+    console.log("reviews", reviews);
     res.json({ reviews });
   })
 );
@@ -58,7 +59,20 @@ router.get(
   "/:id(\\d+)",
   asyncHandler(async function (req, res, next) {
     const id = parseInt(req.params.id, 10);
-    const review = await Review.findByPk(id);
+    const review = await Review.findOne({
+      where: id,
+
+      include: [
+        {
+          model: Beer,
+          attributes: ["id", "name", "breweryId"],
+        },
+        {
+          model: User,
+          attributes: ["id", "username"],
+        },
+      ],
+    });
     res.json({ review });
   })
 );
