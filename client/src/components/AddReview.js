@@ -2,6 +2,7 @@ import React from "react";
 import { TextField } from "@material-ui/core";
 import { addNewReview } from "../store/Actions/reviewActions";
 import { connect } from "react-redux";
+import { Modal } from "@material-ui/core";
 class AddReview extends React.Component {
   constructor(props) {
     super(props);
@@ -17,6 +18,13 @@ class AddReview extends React.Component {
     e.preventDefault();
     const { userId, beerName, breweryName, rating, comments } = this.state;
     this.props.addNewReview(beerName, breweryName, userId, rating, comments);
+    this.setState({
+      beerName: "",
+      breweryName: "",
+      rating: "",
+      comments: "",
+      userId: this.props.userId,
+    });
   };
   updateBeerName = (e) => {
     this.setState({ beerName: e.target.value });
@@ -51,14 +59,14 @@ class AddReview extends React.Component {
               onChange={this.updateBreweryName}
               placeholder="brewery name"
             ></TextField>
-            <TextField
+            <input
               type="number"
               min="0"
               max="5"
               value={rating}
               onChange={this.updateRating}
               placeholder="rating"
-            ></TextField>
+            ></input>
             <TextField
               type="text"
               value={comments}
@@ -79,6 +87,7 @@ class AddReview extends React.Component {
 const mapStateToProps = (state) => {
   return {
     userId: state.auth.id,
+    reviews: state.reviews,
   };
 };
 

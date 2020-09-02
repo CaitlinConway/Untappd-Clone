@@ -13,48 +13,72 @@ const validatePost = [
 
 router.get(
   "/",
-  asyncHandler(async function (_req, res, _next) {
-    const reviews = await Review.findAll();
-    res.json({ reviews });
-  })
-);
-router.get(
-  "/beer/:id(\\d+)",
-  asyncHandler(async function (_req, res, _next) {
-    const beerId = parseInt(req.params.id, 10);
+  asyncHandler(async function (req, res, _next) {
     const reviews = await Review.findAll({
-      where: {
-        beerId,
-      },
+      include: [
+        {
+          model: Beer,
+          attributes: ["id", "name", "breweryId"],
+        },
+        {
+          model: User,
+          attributes: ["id", "username"],
+        },
+      ],
+      order: [["createdAt", "DESC"]],
     });
     res.json({ reviews });
   })
 );
-router.get(
-  "/user/:id(\\d+)",
-  asyncHandler(async function (_req, res, _next) {
-    const userId = parseInt(req.params.id, 10);
-    const reviews = await Review.findAll({
-      where: {
-        userId,
-      },
-    });
-    res.json({ reviews });
-  })
-);
+// router.get(
+//   "/beer/:id(\\d+)",
+//   asyncHandler(async function (_req, res, _next) {
+//     const beerId = parseInt(req.params.id, 10);
+//     const reviews = await Review.findAll({
+//       where: {
+//         beerId,
+//       },
+//     });
+//     res.json({ reviews });
+//   })
+// );
+// router.get(
+//   "/user/:id(\\d+)",
+//   asyncHandler(async function (_req, res, _next) {
+//     const userId = parseInt(req.params.id, 10);
+//     const reviews = await Review.findAll({
+//       where: {
+//         userId,
+//       },
+//     });
+//     res.json({ reviews });
+//   })
+// );
 router.get(
   "/:id(\\d+)",
-  asyncHandler(async function (_req, res, _next) {
+  asyncHandler(async function (req, res, next) {
     const id = parseInt(req.params.id, 10);
-    const review = await Review.findByPk(id);
+    const reviews = await Review.findAll({
+      include: [
+        {
+          model: Beer,
+          attributes: ["id", "name", "breweryId"],
+        },
+        {
+          model: User,
+          attributes: ["id", "username"],
+        },
+      ],
+    });
+    const review = reviews[id];
     res.json({ review });
   })
 );
 router.delete(
   "/:id(\\d+)",
-  asyncHandler(async function (_req, res, _next) {
-    const id = parseInt(req.params.id, 10);
-    const review = await Review.findByPk(id);
+  asyncHandler(async function (req, res, next) {
+    const reviewId = parseInt(req.params.id, 10);
+    const review = await Review.findByPk(reviewId);
     await review.destroy();
     res.status(204).end();
   })
@@ -65,34 +89,56 @@ router.post(
   handleValidationErrors,
   asyncHandler(async function (req, res) {
     const { beerName, breweryName, userId, rating, comments } = req.body;
-    let beerId = await Beer.findOne({
+    let breweryId;
+    let beerId;
+    let beer = await Beer.findOne({
       where: {
         name: beerName,
       },
-    }).id;
-    let breweryId = await Brewery.findOne({
+    });
+    if (beer) {
+      beerId = beer.id;
+    }
+    let brewery = await Brewery.findOne({
       where: {
         name: breweryName,
       },
-    }).id;
-    if (!breweryId) {
+    });
+    if (brewery) {
+      breweryId = brewery.id;
+    }
+    if (!brewery) {
       brewery = await Brewery.create({
         name: breweryName,
       });
       breweryId = brewery.id;
     }
-    if (!beerId) {
+    if (!beer) {
       beer = await Beer.create({
         name: beerName,
         breweryId: breweryId,
       });
       beerId = beer.id;
     }
-    const review = await Review.create({
+    const reviewCreated = await Review.create({
       beerId,
       userId,
       rating,
       comments,
+    });
+    let id = reviewCreated.id;
+    const review = await Review.findOne({
+      where: id,
+      include: [
+        {
+          model: Beer,
+          attributes: ["id", "name", "breweryId"],
+        },
+        {
+          model: User,
+          attributes: ["id", "username"],
+        },
+      ],
     });
     return res.json({
       review,
