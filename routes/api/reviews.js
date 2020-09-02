@@ -30,30 +30,30 @@ router.get(
     res.json({ reviews });
   })
 );
-router.get(
-  "/beer/:id(\\d+)",
-  asyncHandler(async function (_req, res, _next) {
-    const beerId = parseInt(req.params.id, 10);
-    const reviews = await Review.findAll({
-      where: {
-        beerId,
-      },
-    });
-    res.json({ reviews });
-  })
-);
-router.get(
-  "/user/:id(\\d+)",
-  asyncHandler(async function (_req, res, _next) {
-    const userId = parseInt(req.params.id, 10);
-    const reviews = await Review.findAll({
-      where: {
-        userId,
-      },
-    });
-    res.json({ reviews });
-  })
-);
+// router.get(
+//   "/beer/:id(\\d+)",
+//   asyncHandler(async function (_req, res, _next) {
+//     const beerId = parseInt(req.params.id, 10);
+//     const reviews = await Review.findAll({
+//       where: {
+//         beerId,
+//       },
+//     });
+//     res.json({ reviews });
+//   })
+// );
+// router.get(
+//   "/user/:id(\\d+)",
+//   asyncHandler(async function (_req, res, _next) {
+//     const userId = parseInt(req.params.id, 10);
+//     const reviews = await Review.findAll({
+//       where: {
+//         userId,
+//       },
+//     });
+//     res.json({ reviews });
+//   })
+// );
 router.get(
   "/:id(\\d+)",
   asyncHandler(async function (_req, res, _next) {
@@ -65,8 +65,10 @@ router.get(
 router.delete(
   "/:id(\\d+)",
   asyncHandler(async function (_req, res, _next) {
-    const id = parseInt(req.params.id, 10);
-    const review = await Review.findByPk(id);
+    console.log("in delete");
+    const reviewId = parseInt(req.params.id, 10);
+    console.log(reviewId, "reviewId");
+    const review = await Review.findByPk(reviewId);
     await review.destroy();
     res.status(204).end();
   })

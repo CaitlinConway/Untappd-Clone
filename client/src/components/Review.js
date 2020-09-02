@@ -1,10 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-
+import { deleteReview } from "../store/Actions/reviewActions";
 class Review extends React.Component {
   constructor(props) {
     super(props);
-    console.log(this.props);
     const review = this.props.review;
     this.state = {
       beerName: review.Beer.name,
@@ -13,6 +12,12 @@ class Review extends React.Component {
       user: review.User.username,
     };
   }
+  updateReview = (e) => {};
+  deleteReview = (e) => {
+    e.preventDefault();
+    debugger;
+    this.props.deleteReview(this.props.review);
+  };
   render() {
     const { beerName, rating, comments, user } = this.state;
     return (
@@ -22,6 +27,8 @@ class Review extends React.Component {
           <p>{rating}</p>
           <p>{comments}</p>
           <p>Reviewed By: {user}</p>
+          <button onClick={this.updateReview}>Update Review</button>
+          <button onClick={this.deleteReview}>Delete Review</button>
         </li>
       </>
     );
@@ -33,6 +40,8 @@ const mapStateToProps = (state) => {
   };
 };
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    deleteReview: (review) => dispatch(deleteReview(review)),
+  };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Review);

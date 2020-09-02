@@ -11,9 +11,11 @@ export const addReview = (review) => {
     review,
   };
 };
-export const deleteReview = (review) => {
+export const removeReview = (review) => {
+  debugger;
   return {
     type: DELETE_REVIEW,
+    review,
   };
 };
 export const updateReview = (review) => {
@@ -72,4 +74,16 @@ export const getAllReviews = () => async (dispatch) => {
     dispatch(fetchReviews(data.reviews));
   }
   return data.reviews;
+};
+
+export const deleteReview = (review) => async (dispatch) => {
+  debugger;
+  const res = await fetch(`/api/reviews/${review.id}`, {
+    method: "DELETE",
+  });
+  debugger;
+  let data = await res.json();
+  if (res.ok) {
+    dispatch(removeReview(data.review));
+  }
 };
