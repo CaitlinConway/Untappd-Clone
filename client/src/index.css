@@ -17,7 +17,7 @@
   max-width: 200px;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 15px;
+  padding: 30px;
   border: 2px solid orange;
   box-shadow: 2px 2px;
   border-radius: 10px;
@@ -43,7 +43,7 @@ button {
 .login-page {
   height: 100%;
   width: 100%;
-  background-image: url(https://thumbor.thedailymeal.com/AXjKZTT1B2_avj41MMhaOycirA8=/870x565/https://www.thedailymeal.com/sites/default/files/slideshows/1871062/2218930/iStock-854848732.jpg);
+  /* background-image: url(https://thumbor.thedailymeal.com/AXjKZTT1B2_avj41MMhaOycirA8=/870x565/https://www.thedailymeal.com/sites/default/files/slideshows/1871062/2218930/iStock-854848732.jpg); */
   background-size: cover;
 }
 .no-account {
@@ -53,6 +53,9 @@ button {
   opacity: 0.7;
   padding: 30px;
   align-items: center;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
 }
 .errors {
   display: none;
@@ -119,6 +122,7 @@ li {
   border-radius: 10px;
   background-color: white;
   margin: 20px;
+  list-style: none;
 }
 ul {
   text-align: center;
@@ -129,7 +133,15 @@ ul {
   align-content: center;
   justify-content: center;
 }
-#root {
+/* #root {
+  background: url(https://media.istockphoto.com/photos/draught-beer-in-glasses-picture-id1040303026?k=6&m=1040303026&s=612x612&w=0&h=ZlIJgK1QAz9KvSo-0i43yDkbgUv-gRRKZQHErr7ZmOc=)
+    no-repeat center center fixed;
+  opacity: 1;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+} */
+body {
   background: url(https://media.istockphoto.com/photos/draught-beer-in-glasses-picture-id1040303026?k=6&m=1040303026&s=612x612&w=0&h=ZlIJgK1QAz9KvSo-0i43yDkbgUv-gRRKZQHErr7ZmOc=)
     no-repeat center center fixed;
   opacity: 1;
