@@ -10,11 +10,18 @@ class HomePage extends React.Component {
     return (
       <>
         <div className="page-header">Untappd</div>
-
-        <Reviews>
-          <AddReview></AddReview>
-        </Reviews>
-        <Logout></Logout>
+        <div className="homepage-div">
+          <div className="feed-div">
+            <Reviews>
+              <div className="add-div">
+                <AddReview></AddReview>
+              </div>
+            </Reviews>
+          </div>
+          <div className="logout-div">
+            <Logout></Logout>
+          </div>
+        </div>
       </>
     );
   }

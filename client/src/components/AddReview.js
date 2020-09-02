@@ -1,8 +1,9 @@
 import React from "react";
-import { TextField } from "@material-ui/core";
+import { TextField, GridList } from "@material-ui/core";
 import { addNewReview } from "../store/Actions/reviewActions";
 import { connect } from "react-redux";
 import { Modal } from "@material-ui/core";
+
 class AddReview extends React.Component {
   constructor(props) {
     super(props);
@@ -18,13 +19,6 @@ class AddReview extends React.Component {
     e.preventDefault();
     const { userId, beerName, breweryName, rating, comments } = this.state;
     this.props.addNewReview(beerName, breweryName, userId, rating, comments);
-    this.setState({
-      beerName: "",
-      breweryName: "",
-      rating: "",
-      comments: "",
-      userId: this.props.userId,
-    });
   };
   updateBeerName = (e) => {
     this.setState({ beerName: e.target.value });
@@ -41,7 +35,7 @@ class AddReview extends React.Component {
   render() {
     const { beerName, breweryName, rating, comments } = this.state;
     return (
-      <>
+      <div className="add-review-div">
         <div className="error-container">
           <ul id="errors" className="errors"></ul>
         </div>
@@ -52,12 +46,14 @@ class AddReview extends React.Component {
               value={beerName}
               onChange={this.updateBeerName}
               placeholder="beer name"
+              fullWidth
             ></TextField>
             <TextField
               type="text"
               value={breweryName}
               onChange={this.updateBreweryName}
               placeholder="brewery name"
+              fullWidth
             ></TextField>
             <TextField
               type="number"
@@ -70,12 +66,14 @@ class AddReview extends React.Component {
               value={rating}
               onChange={this.updateRating}
               placeholder="rating"
+              fullWidth
             ></TextField>
             <TextField
               type="text"
               value={comments}
               onChange={this.updateComments}
               placeholder="comments"
+              fullWidth
             ></TextField>
             <div className="review-button-div">
               <button type="submit" className="button">
@@ -84,7 +82,7 @@ class AddReview extends React.Component {
             </div>
           </form>
         </div>
-      </>
+      </div>
     );
   }
 }

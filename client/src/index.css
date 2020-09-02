@@ -66,12 +66,36 @@ button {
 .add-review-form-div {
   display: flex;
   flex-wrap: wrap;
-  justify-content: right;
+  justify-content: space-around;
   padding: 10px;
+  position: fixed;
+  right: 50px;
+  top: 100px;
+  max-width: 400px;
 }
 .review-button-div {
   padding-top: 10px;
 }
 .logout-button-div {
   padding: 10px;
+}
+.feed-div {
+  padding-left: 100px;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+}
+.logout-div {
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+}
+
+.homepage-div {
+  display: flex;
+  flex-direction: column;
+}
+li {
+  width: 500px;
 }

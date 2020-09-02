@@ -6,6 +6,7 @@ const { User } = require("../../db/models");
 const { handleValidationErrors } = require("../util/validation");
 const {
   requireUser,
+  getCurrentUser,
   generateToken,
   AuthenticationError,
 } = require("../util/auth");
@@ -19,7 +20,7 @@ const validateLogin = [check("username").exists(), check("password").exists()];
 
 router.get(
   "/",
-  requireUser,
+  getCurrentUser,
   asyncHandler(async function (req, res, next) {
     if (req.user) {
       return res.json({

@@ -31,6 +31,7 @@ function App() {
       const res = await fetch("/api/session");
       if (res.ok) {
         res.data = await res.json(); // current user info
+        console.log(res.data);
       }
       setLoading(false);
     };
@@ -45,11 +46,13 @@ function App() {
       <BrowserRouter>
         <Provider store={store}>
           <Switch>
+            <ConnectedProtectedRoute
+              exact
+              path="/"
+              component={HomePage}
+            ></ConnectedProtectedRoute>
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
-            <ConnectedProtectedRoute exact path="/">
-              <HomePage></HomePage>
-            </ConnectedProtectedRoute>
           </Switch>
         </Provider>
       </BrowserRouter>
