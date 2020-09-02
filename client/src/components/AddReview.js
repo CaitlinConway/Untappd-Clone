@@ -18,6 +18,13 @@ class AddReview extends React.Component {
     e.preventDefault();
     const { userId, beerName, breweryName, rating, comments } = this.state;
     this.props.addNewReview(beerName, breweryName, userId, rating, comments);
+    this.setState({
+      beerName: "",
+      breweryName: "",
+      rating: "",
+      comments: "",
+      userId: this.props.userId,
+    });
   };
   updateBeerName = (e) => {
     this.setState({ beerName: e.target.value });
