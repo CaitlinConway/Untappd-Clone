@@ -41,6 +41,8 @@ button {
   padding-top: 10px;
 }
 .login-page {
+  height: 100%;
+  width: 100%;
   background-image: url(https://thumbor.thedailymeal.com/AXjKZTT1B2_avj41MMhaOycirA8=/870x565/https://www.thedailymeal.com/sites/default/files/slideshows/1871062/2218930/iStock-854848732.jpg);
   background-size: cover;
 }
@@ -79,25 +81,29 @@ button {
   border: 2px solid orange;
   box-shadow: 2px 2px;
   border-radius: 10px;
+  background-color: white;
 }
 .review-button-div {
   padding-top: 10px;
+  display: flex;
+  align-content: center;
+  justify-content: center;
 }
 .logout-button-div {
   padding: 10px;
 }
 .feed-div {
-  padding-left: 50px;
-  padding-top: 20px;
+  padding-left: 0px;
+  padding-top: 50px;
   display: flex;
   flex-direction: column;
-  max-width: 500px;
+  max-width: 400px;
   align-items: center;
   align-content: center;
 }
 .logout-div {
   position: fixed;
-  bottom: 5px;
+  top: 3px;
   right: 5px;
 }
 
@@ -106,15 +112,35 @@ button {
   flex-direction: column;
 }
 li {
-  width: 380px;
+  width: 350px;
   padding: 20px;
-  border-bottom: 1px solid grey;
+  border: 2px solid orange;
+  box-shadow: 2px 2px;
+  border-radius: 10px;
+  background-color: white;
+  margin: 20px;
 }
 ul {
   text-align: center;
+  align-content: center;
 }
 .feed-buttons {
   display: flex;
   align-content: center;
   justify-content: center;
+}
+#root {
+  background: url(https://media.istockphoto.com/photos/draught-beer-in-glasses-picture-id1040303026?k=6&m=1040303026&s=612x612&w=0&h=ZlIJgK1QAz9KvSo-0i43yDkbgUv-gRRKZQHErr7ZmOc=)
+    no-repeat center center fixed;
+  opacity: 1;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.login-page-div {
+  height: 100%;
+}
+p {
+  font-weight: bolder;
+  font-family: Arial, Helvetica, sans-serif;
 }
