@@ -13,7 +13,7 @@ const validatePost = [
 
 router.get(
   "/",
-  asyncHandler(async function (_req, res, _next) {
+  asyncHandler(async function (req, res, _next) {
     const reviews = await Review.findAll({
       include: [
         {
@@ -56,7 +56,7 @@ router.get(
 // );
 router.get(
   "/:id(\\d+)",
-  asyncHandler(async function (_req, res, _next) {
+  asyncHandler(async function (req, res, next) {
     const id = parseInt(req.params.id, 10);
     const review = await Review.findByPk(id);
     res.json({ review });
@@ -64,7 +64,7 @@ router.get(
 );
 router.delete(
   "/:id(\\d+)",
-  asyncHandler(async function (_req, res, _next) {
+  asyncHandler(async function (req, res, next) {
     console.log("in delete");
     const reviewId = parseInt(req.params.id, 10);
     console.log(reviewId, "reviewId");

@@ -10,6 +10,9 @@ class Reviews extends React.Component {
   componentDidMount() {
     this.props.getAllReviews();
   }
+  componentDidUpdate() {
+    this.props.getAllReviews();
+  }
   render() {
     return <ReviewFeed reviews={this.props.reviews} />;
   }

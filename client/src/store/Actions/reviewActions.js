@@ -11,11 +11,10 @@ export const addReview = (review) => {
     review,
   };
 };
-export const removeReview = (review) => {
+export const removeReview = () => {
   debugger;
   return {
     type: DELETE_REVIEW,
-    review,
   };
 };
 export const updateReview = (review) => {
@@ -79,11 +78,14 @@ export const getAllReviews = () => async (dispatch) => {
 export const deleteReview = (review) => async (dispatch) => {
   debugger;
   const res = await fetch(`/api/reviews/${review.id}`, {
+    headers: {
+      _csrf: Cookies.get("_csrf"),
+      "XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
+    },
     method: "DELETE",
   });
   debugger;
-  let data = await res.json();
   if (res.ok) {
-    dispatch(removeReview(data.review));
+    dispatch(removeReview());
   }
 };
