@@ -88,6 +88,7 @@ export const signup = (username, email, password, confirmPassword) => async (
   }
   if (res.ok) {
     dispatch(registerUser(res.data.user));
+    alert("Signup successful! Return to login page");
   }
   return res;
 };
