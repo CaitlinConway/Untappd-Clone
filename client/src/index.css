@@ -32,6 +32,7 @@ button {
   background-color: orange;
   font-weight: bold;
   border-radius: 10px;
+  align-items: center;
 }
 .log-in-button-div {
   padding-top: 10px;
@@ -72,6 +73,9 @@ button {
   right: 50px;
   top: 100px;
   max-width: 400px;
+  border: 2px solid orange;
+  box-shadow: 2px 2px;
+  border-radius: 10px;
 }
 .review-button-div {
   padding-top: 10px;
@@ -80,11 +84,13 @@ button {
   padding: 10px;
 }
 .feed-div {
-  padding-left: 100px;
+  padding-left: 50px;
   padding-top: 20px;
   display: flex;
   flex-direction: column;
   max-width: 500px;
+  align-items: center;
+  align-content: center;
 }
 .logout-div {
   position: fixed;
@@ -97,5 +103,15 @@ button {
   flex-direction: column;
 }
 li {
-  width: 500px;
+  width: 380px;
+  padding: 20px;
+  border-bottom: 1px solid grey;
+}
+ul {
+  text-align: center;
+}
+.feed-buttons {
+  display: flex;
+  align-content: center;
+  justify-content: center;
 }

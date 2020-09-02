@@ -26,8 +26,10 @@ class Review extends React.Component {
           <p>{rating}</p>
           <p>{comments}</p>
           <p>Reviewed By: {user}</p>
-          <button onClick={this.updateReview}>Update Review</button>
-          <button onClick={this.deleteReview}>Delete Review</button>
+          <div className="feed-buttons">
+            <button onClick={this.updateReview}>Update Review</button>
+            <button onClick={this.deleteReview}>Delete Review</button>
+          </div>
         </li>
       </>
     );
