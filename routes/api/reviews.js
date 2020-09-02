@@ -77,9 +77,7 @@ router.get(
 router.delete(
   "/:id(\\d+)",
   asyncHandler(async function (req, res, next) {
-    console.log("in delete");
     const reviewId = parseInt(req.params.id, 10);
-    console.log(reviewId, "reviewId");
     const review = await Review.findByPk(reviewId);
     await review.destroy();
     res.status(204).end();
@@ -91,37 +89,56 @@ router.post(
   handleValidationErrors,
   asyncHandler(async function (req, res) {
     const { beerName, breweryName, userId, rating, comments } = req.body;
+    let breweryId;
+    let beerId;
     let beer = await Beer.findOne({
       where: {
         name: beerName,
       },
     });
-    let beerId = beer.id;
+    if (beer) {
+      beerId = beer.id;
+    }
     let brewery = await Brewery.findOne({
       where: {
         name: breweryName,
       },
     });
-    let breweryId = brewery.id;
-    console.log(beerId, breweryId);
-    if (!breweryId) {
+    if (brewery) {
+      breweryId = brewery.id;
+    }
+    if (!brewery) {
       brewery = await Brewery.create({
         name: breweryName,
       });
       breweryId = brewery.id;
     }
-    if (!beerId) {
+    if (!beer) {
       beer = await Beer.create({
         name: beerName,
         breweryId: breweryId,
       });
       beerId = beer.id;
     }
-    const review = await Review.create({
+    const reviewCreated = await Review.create({
       beerId,
       userId,
       rating,
       comments,
+    });
+    let id = reviewCreated.id;
+    const review = await Review.findOne({
+      where: id,
+      include: [
+        {
+          model: Beer,
+          attributes: ["id", "name", "breweryId"],
+        },
+        {
+          model: User,
+          attributes: ["id", "username"],
+        },
+      ],
     });
     return res.json({
       review,
