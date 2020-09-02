@@ -61,8 +61,9 @@ export const addNewReview = (
       errorsContainer.appendChild(errorLi);
     }
   }
-  dispatch(addReview(res.data.review));
-
+  if (res.ok) {
+    dispatch(addReview(res.data.review));
+  }
   return res;
 };
 
