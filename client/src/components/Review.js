@@ -22,8 +22,8 @@ class Review extends React.Component {
     return (
       <>
         <li>
-          <p>{beerName}</p>
-          <p>{rating}</p>
+          <p>Beer: {beerName}</p>
+          <p>Rating: {rating}</p>
           <p>{comments}</p>
           <p>Reviewed By: {user}</p>
           <div className="feed-buttons">

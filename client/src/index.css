@@ -97,7 +97,7 @@ button {
   padding-top: 50px;
   display: flex;
   flex-direction: column;
-  max-width: 400px;
+  max-width: 50%;
   align-items: center;
   align-content: center;
 }
