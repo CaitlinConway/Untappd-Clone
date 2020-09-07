@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { deleteReview } from "../store/Actions/reviewActions";
+import EditReview from "./EditReview";
 class Review extends React.Component {
   constructor(props) {
     super(props);
@@ -45,6 +46,9 @@ class Review extends React.Component {
           <p>{comments}</p>
           <p>Rating: {rating}</p>
           <p>{comments}</p>
+          <div id={`review-form-div-${this.props.review.id}`} hidden>
+            <EditReview review={this.props.review}></EditReview>
+          </div>
           <div className="feed-buttons">
             <button onClick={this.updateReview} value={reviewId}>
               Update Review
