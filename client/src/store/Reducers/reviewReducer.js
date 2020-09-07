@@ -6,7 +6,7 @@ import {
 } from "../Actions/reviewActions";
 export default function reviewReducer(state = {}, action) {
   let newState = Object.assign({}, state);
-  debugger;
+
   switch (action.type) {
     case ADD_REVIEW:
       newState[action.review.id] = action.review;

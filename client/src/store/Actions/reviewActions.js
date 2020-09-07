@@ -50,7 +50,6 @@ export const addNewReview = (
   const errorsContainer = document.getElementById("errors");
   errorsContainer.innerHTML = "";
   errorsContainer.style.display = "none";
-  debugger;
   if (error) {
     errorsContainer.style.display = "flex";
     let errors = error.errors;
@@ -59,7 +58,6 @@ export const addNewReview = (
       const errorLi = document.createElement("li");
       errorLi.innerHTML = message;
       errorsContainer.appendChild(errorLi);
-      debugger;
     }
   }
   if (res.ok) {
@@ -111,7 +109,6 @@ export const editReview = (
   const data = await res.json();
   const { error } = data;
   let { review } = data;
-  debugger;
   const errorsContainer = document.getElementById("errors");
   errorsContainer.innerHTML = "";
   errorsContainer.style.display = "none";

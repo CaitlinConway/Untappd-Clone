@@ -38,10 +38,8 @@ class EditReview extends React.Component {
       rating,
       comments
     );
-    debugger;
     let reviewForm = document.getElementById(`review-form-div-${reviewId}`);
     reviewForm.style.display = "none";
-    // this.props.reRender();
   };
   updateBeerName = (e) => {
     this.setState({ beerName: e.target.value });
