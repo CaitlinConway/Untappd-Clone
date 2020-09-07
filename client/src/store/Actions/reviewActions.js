@@ -45,12 +45,12 @@ export const addNewReview = (
     },
     body: JSON.stringify({ beerName, breweryName, userId, rating, comments }),
   });
-
   res.data = await res.json();
   const { error } = res.data;
   const errorsContainer = document.getElementById("errors");
   errorsContainer.innerHTML = "";
   errorsContainer.style.display = "none";
+  debugger;
   if (error) {
     errorsContainer.style.display = "flex";
     let errors = error.errors;
@@ -59,6 +59,7 @@ export const addNewReview = (
       const errorLi = document.createElement("li");
       errorLi.innerHTML = message;
       errorsContainer.appendChild(errorLi);
+      debugger;
     }
   }
   if (res.ok) {

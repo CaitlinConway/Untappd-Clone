@@ -124,7 +124,6 @@ router.post(
     if (!beer) {
       beer = await Beer.create({
         name: beerName,
-        breweryId: breweryId,
       });
       beerId = beer.id;
     }
@@ -135,27 +134,30 @@ router.post(
       rating,
       comments,
     });
-    let id = reviewCreated.id;
-    const review = await Review.findOne({
-      where: id,
-      include: [
-        {
-          model: Beer,
-          attributes: ["id", "name"],
-        },
-        {
-          model: User,
-          attributes: ["id", "username"],
-        },
-        {
-          model: Brewery,
-          attributes: ["id", "name"],
-        },
-      ],
-    });
-    return res.json({
-      review,
-    });
+    if (reviewCreated) {
+      let id = reviewCreated.id;
+      const review = await Review.findOne({
+        where: id,
+        include: [
+          {
+            model: Beer,
+            attributes: ["id", "name"],
+          },
+          {
+            model: User,
+            attributes: ["id", "username"],
+          },
+          {
+            model: Brewery,
+            attributes: ["id", "name"],
+          },
+        ],
+      });
+      return res.json({
+        review,
+      });
+    }
+    return res.json({ error });
   })
 );
 router.put(

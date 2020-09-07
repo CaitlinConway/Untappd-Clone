@@ -13,6 +13,9 @@ class HomePage extends React.Component {
               <div className="add-div">
                 <AddReview></AddReview>
               </div>
+              <div className="error-container">
+                <ul id="errors" className="errors"></ul>
+              </div>
             </Reviews>
           </div>
           <div className="logout-div">

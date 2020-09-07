@@ -61,24 +61,21 @@ button {
 .errors {
   display: none;
   flex-wrap: wrap;
-  top: 10%;
-  left: 10%;
   margin-top: 80px;
   padding: 20px;
   max-width: 300px;
   border: 2px solid black;
   background-color: orangered;
   border-radius: 10px;
-  position: fixed;
-  top: 20px;
-  right: 0%;
+  position: absolute;
   z-index: 5;
 }
 .error-container {
   display: flex;
   justify-content: center;
   position: absolute;
-  bottom: 1px;
+  top: 10%;
+  right: 50%;
 }
 .add-review-form-div {
   display: flex;

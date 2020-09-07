@@ -59,9 +59,9 @@ class EditReview extends React.Component {
     const { beerName, breweryName, rating, comments, reviewId } = this.state;
     return (
       <div className="edit-review-div">
-        <div className="error-container">
+        {/* <div className="error-container">
           <ul id="errors" className="errors"></ul>
-        </div>
+        </div> */}
         <div className="edit-review-form-div">
           <form onSubmit={this.handleSubmit} className="review-form">
             <TextField
