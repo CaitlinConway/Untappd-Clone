@@ -14,7 +14,9 @@ export default function reviewReducer(state = {}, action) {
       delete newState[action.reviewId];
       return newState;
     case UPDATE_REVIEW:
-      return action.review;
+      newState[action.review.id] = action.review;
+
+      return newState;
     case GET_REVIEWS:
       action.reviews.forEach((review) => {
         // const reviewClone = {};

@@ -8,9 +8,6 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   Beer.associate = function (models) {
-    Beer.belongsTo(models.Brewery, {
-      foreignKey: "breweryId",
-    });
     Beer.hasMany(models.Review, {
       foreignKey: "beerId",
     });

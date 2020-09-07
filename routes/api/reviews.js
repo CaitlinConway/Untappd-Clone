@@ -18,11 +18,15 @@ router.get(
       include: [
         {
           model: Beer,
-          attributes: ["id", "name", "breweryId"],
+          attributes: ["id", "name"],
         },
         {
           model: User,
           attributes: ["id", "username"],
+        },
+        {
+          model: Brewery,
+          attributes: ["id", "name"],
         },
       ],
       order: [["createdAt", "DESC"]],
@@ -62,11 +66,15 @@ router.get(
       include: [
         {
           model: Beer,
-          attributes: ["id", "name", "breweryId"],
+          attributes: ["id", "name"],
         },
         {
           model: User,
           attributes: ["id", "username"],
+        },
+        {
+          model: Brewery,
+          attributes: ["id", "name"],
         },
       ],
     });
@@ -122,6 +130,7 @@ router.post(
     }
     const reviewCreated = await Review.create({
       beerId,
+      breweryId,
       userId,
       rating,
       comments,
@@ -132,11 +141,15 @@ router.post(
       include: [
         {
           model: Beer,
-          attributes: ["id", "name", "breweryId"],
+          attributes: ["id", "name"],
         },
         {
           model: User,
           attributes: ["id", "username"],
+        },
+        {
+          model: Brewery,
+          attributes: ["id", "name"],
         },
       ],
     });
@@ -145,5 +158,47 @@ router.post(
     });
   })
 );
+router.put(
+  "/:id(\\d+)",
+  validatePost,
+  handleValidationErrors,
+  asyncHandler(async (req, res, next) => {
+    const reviewId = parseInt(req.params.id, 10);
+    let review = await Review.findByPk(reviewId);
+    const beerId = review.beerId;
+    const breweryId = review.breweryId;
+    const { beerName, breweryName, userId, rating, comments } = req.body;
+    console.log(req.body);
+    let beer = await Beer.findByPk(beerId);
+    let brewery = await Brewery.findByPk(breweryId);
 
+    await beer.update({ name: beerName });
+    await brewery.update({ name: breweryName });
+    await review.update({ rating, comments });
+    if (review) {
+      review = await Review.findOne({
+        where: { id: reviewId },
+        include: [
+          {
+            model: Beer,
+            attributes: ["id", "name"],
+          },
+          {
+            model: User,
+            attributes: ["id", "username"],
+          },
+          {
+            model: Brewery,
+            attributes: ["id", "name"],
+          },
+        ],
+      });
+      return res.json({
+        review,
+      });
+    } else {
+      next(reviewNotFoundError(reviewId));
+    }
+  })
+);
 module.exports = router;

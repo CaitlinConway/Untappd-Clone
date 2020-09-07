@@ -5,7 +5,6 @@ import userReducer from "./userReducer";
 
 const rootReducer = combineReducers({
   auth: authReducer,
-  // users: userReducer,
   reviews: reviewReducer,
 });
 

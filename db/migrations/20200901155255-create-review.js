@@ -13,6 +13,11 @@ module.exports = {
         allowNull: false,
         references: { model: "Beers" },
       },
+      breweryId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { model: "Breweries" },
+      },
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,

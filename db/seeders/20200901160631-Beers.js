@@ -17,7 +17,6 @@ module.exports = {
       [
         {
           name: "Spotted Cow",
-          breweryId: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
         },

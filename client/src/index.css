@@ -78,6 +78,7 @@ button {
   display: flex;
   justify-content: center;
   position: absolute;
+  bottom: 1px;
 }
 .add-review-form-div {
   display: flex;
