@@ -16,10 +16,14 @@ class Reviews extends React.Component {
       this.props.getAllReviews();
     }
   }
+  reRender = () => {
+    debugger;
+    this.forceUpdate();
+  };
   render() {
     return (
       <>
-        <ReviewFeed reviews={this.props.reviews} />
+        <ReviewFeed reviews={this.props.reviews} reRender={this.reRender} />
         <AddReview reviews={this.props.reviews} />
       </>
     );

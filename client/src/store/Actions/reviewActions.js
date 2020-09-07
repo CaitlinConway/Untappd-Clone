@@ -110,6 +110,7 @@ export const editReview = (
   const data = await res.json();
   const { error } = data;
   let { review } = data;
+  debugger;
   const errorsContainer = document.getElementById("errors");
   errorsContainer.innerHTML = "";
   errorsContainer.style.display = "none";

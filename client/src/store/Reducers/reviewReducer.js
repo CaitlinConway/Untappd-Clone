@@ -6,6 +6,7 @@ import {
 } from "../Actions/reviewActions";
 export default function reviewReducer(state = {}, action) {
   let newState = Object.assign({}, state);
+  debugger;
   switch (action.type) {
     case ADD_REVIEW:
       newState[action.review.id] = action.review;
@@ -15,7 +16,6 @@ export default function reviewReducer(state = {}, action) {
       return newState;
     case UPDATE_REVIEW:
       newState[action.review.id] = action.review;
-
       return newState;
     case GET_REVIEWS:
       action.reviews.forEach((review) => {

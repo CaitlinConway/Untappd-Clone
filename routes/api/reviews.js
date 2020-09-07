@@ -168,10 +168,8 @@ router.put(
     const beerId = review.beerId;
     const breweryId = review.breweryId;
     const { beerName, breweryName, userId, rating, comments } = req.body;
-    console.log(req.body);
     let beer = await Beer.findByPk(beerId);
     let brewery = await Brewery.findByPk(breweryId);
-
     await beer.update({ name: beerName });
     await brewery.update({ name: breweryName });
     await review.update({ rating, comments });
@@ -193,6 +191,7 @@ router.put(
           },
         ],
       });
+      console.log(review);
       return res.json({
         review,
       });

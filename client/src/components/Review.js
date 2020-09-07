@@ -12,10 +12,16 @@ class Review extends React.Component {
       comments: review.comments,
       user: review.User.username,
       breweryName: review.Brewery.name,
+      reviewId: review.id,
+      Brewery: review.Brewery,
+      Beer: review.Beer,
+      User: review.user,
     };
   }
   updateReview = (e) => {
-    let reviewForm = document.getElementById("review-form-div");
+    let reviewForm = document.getElementById(
+      `review-form-div-${e.target.value}`
+    );
     reviewForm.style.display = "flex";
   };
   deleteReview = (e) => {
@@ -23,7 +29,14 @@ class Review extends React.Component {
     this.props.deleteReview(this.props.review);
   };
   render() {
-    const { beerName, rating, comments, user, breweryName } = this.state;
+    const {
+      beerName,
+      rating,
+      comments,
+      user,
+      breweryName,
+      reviewId,
+    } = this.state;
     return (
       <>
         <li>
@@ -33,10 +46,9 @@ class Review extends React.Component {
           <p>Rating: {rating}</p>
           <p>{comments}</p>
           <div className="feed-buttons">
-            <button onClick={this.updateReview}>Update Review</button>
-            <div id="review-form-div" hidden>
-              <EditReview review={this.props.review}></EditReview>
-            </div>
+            <button onClick={this.updateReview} value={reviewId}>
+              Update Review
+            </button>
             <button onClick={this.deleteReview}>Delete Review</button>
           </div>
         </li>

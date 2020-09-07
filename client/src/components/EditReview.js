@@ -7,19 +7,31 @@ import { Modal } from "@material-ui/core";
 class EditReview extends React.Component {
   constructor(props) {
     super(props);
+    const review = this.props.review;
     this.state = {
-      beerName: "",
-      breweryName: "",
-      rating: "",
-      comments: "",
-      userId: this.props.userId,
+      beerName: review.Beer.name,
+      rating: review.rating,
+      comments: review.comments,
+      userId: review.User.id,
+      breweryName: review.Brewery.name,
+      reviewId: review.id,
+      Brewery: review.Brewery,
+      Beer: review.Beer,
+      User: review.User,
     };
   }
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
-    const { userId, beerName, breweryName, rating, comments } = this.state;
+    const {
+      userId,
+      beerName,
+      breweryName,
+      rating,
+      comments,
+      reviewId,
+    } = this.state;
     const review = this.props.review;
-    this.props.editReview(
+    await this.props.editReview(
       review,
       beerName,
       breweryName,
@@ -27,13 +39,10 @@ class EditReview extends React.Component {
       rating,
       comments
     );
-    this.setState({
-      beerName: "",
-      breweryName: "",
-      rating: "",
-      comments: "",
-      userId: this.props.userId,
-    });
+    debugger;
+    let reviewForm = document.getElementById(`review-form-div-${reviewId}`);
+    reviewForm.style.display = "none";
+    this.props.reRender();
   };
   updateBeerName = (e) => {
     this.setState({ beerName: e.target.value });
@@ -48,7 +57,7 @@ class EditReview extends React.Component {
     this.setState({ comments: e.target.value });
   };
   render() {
-    const { beerName, breweryName, rating, comments } = this.state;
+    const { beerName, breweryName, rating, comments, reviewId } = this.state;
     return (
       <div className="edit-review-div">
         <div className="error-container">
@@ -91,7 +100,12 @@ class EditReview extends React.Component {
               fullWidth
             ></TextField>
             <div className="review-button-div">
-              <button type="submit" className="button">
+              <button
+                onClick={this.handleSubmit}
+                type="submit"
+                className="button"
+                value={reviewId}
+              >
                 Edit review!
               </button>
             </div>
@@ -104,6 +118,7 @@ class EditReview extends React.Component {
 const mapStateToProps = (state) => {
   return {
     userId: state.auth.id,
+    reviews: state.reviews,
   };
 };
 
