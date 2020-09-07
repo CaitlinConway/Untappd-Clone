@@ -9,21 +9,22 @@ class Reviews extends React.Component {
     this.props.getAllReviews();
   }
   componentDidUpdate(prevProps) {
-    // if (this.props.reviews.length !== prevProps.reviews.length) {
-    const reviews = this.props.reviews;
-    for (let reviewId in reviews) {
-      let review = reviews[reviewId];
-      if (Object.keys(prevProps.reviews).length !== 0) {
-        let prevReview = prevProps.reviews[reviewId];
-        if (
-          review.Beer.name !== prevReview.Beer.name ||
-          review.Brewery.name !== prevReview.Brewery.name
-        ) {
-          this.props.getAllReviews();
-        }
-      }
+    if (this.props.reviews.length !== prevProps.reviews.length) {
+      // const reviews = this.props.reviews;
+      // for (let reviewId in reviews) {
+      //   let review = reviews[reviewId];
+      //   if (Object.keys(prevProps.reviews).length !== 0) {
+      //     let prevReview = prevProps.reviews[reviewId];
+      //     if (
+      //       review.Beer.name !== prevReview.Beer.name ||
+      //       review.Brewery.name !== prevReview.Brewery.name
+      //     ) {
+      //       this.props.getAllReviews();
+      //     }
+      //   }
+      // }
+      this.props.getAllReviews();
     }
-    // this.props.getAllReviews();
   }
   render() {
     return (
