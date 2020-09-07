@@ -5,9 +5,6 @@ import ReviewFeed from "./ReviewFeed";
 import AddReview from "./AddReview";
 
 class Reviews extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   componentDidMount() {
     this.props.getAllReviews();
   }

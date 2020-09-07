@@ -1,8 +1,7 @@
 import React from "react";
-import { TextField, GridList } from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 import { editReview } from "../store/Actions/reviewActions";
 import { connect } from "react-redux";
-import { Modal } from "@material-ui/core";
 
 class EditReview extends React.Component {
   constructor(props) {
@@ -42,7 +41,7 @@ class EditReview extends React.Component {
     debugger;
     let reviewForm = document.getElementById(`review-form-div-${reviewId}`);
     reviewForm.style.display = "none";
-    this.props.reRender();
+    // this.props.reRender();
   };
   updateBeerName = (e) => {
     this.setState({ beerName: e.target.value });

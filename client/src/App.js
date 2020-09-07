@@ -6,7 +6,6 @@ import configureStore from "./store/configureStore";
 import { CssBaseline } from "@material-ui/core";
 import Signup from "./components/Signup.js";
 import HomePage from "./components/HomePage.js";
-import Logout from "./components/Logout";
 const store = configureStore();
 if (process.env.NODE_ENV !== "production") {
   window.store = store;

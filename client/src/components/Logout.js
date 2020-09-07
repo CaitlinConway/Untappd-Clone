@@ -2,9 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { logout } from "../store/Actions/authActions";
 class Logout extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   onSubmit = (e) => {
     e.preventDefault();
     this.props.logout();

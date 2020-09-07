@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { deleteReview } from "../store/Actions/reviewActions";
-import EditReview from "./EditReview";
 class Review extends React.Component {
   constructor(props) {
     super(props);
@@ -43,6 +42,7 @@ class Review extends React.Component {
           <p>
             {user} is drinking a {beerName} at {breweryName}
           </p>
+          <p>{comments}</p>
           <p>Rating: {rating}</p>
           <p>{comments}</p>
           <div className="feed-buttons">
