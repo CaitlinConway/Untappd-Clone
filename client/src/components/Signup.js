@@ -37,7 +37,7 @@ class Signup extends React.Component {
     const { username, email, password, confirmPassword } = this.state;
     return (
       <div className="login-page">
-        <div className="page-header">Untappd</div>
+        <div className="page-header-login">Untappd</div>
         <div className="error-container">
           <ul id="errors" className="errors"></ul>
         </div>
