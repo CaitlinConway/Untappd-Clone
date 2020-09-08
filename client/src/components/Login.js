@@ -36,7 +36,7 @@ class Login extends React.Component {
     return (
       <div className="login-page-div">
         <div className="login-page">
-          <div className="page-header">Untappd</div>
+          <div className="page-header-login">Untappd</div>
           <div className="error-container">
             <ul id="errors" className="errors"></ul>
           </div>
