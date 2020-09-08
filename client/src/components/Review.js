@@ -5,17 +5,17 @@ import EditReview from "./EditReview";
 class Review extends React.Component {
   constructor(props) {
     super(props);
-    const review = this.props.review;
     this.state = {
-      beerName: review.Beer.name,
-      rating: review.rating,
-      comments: review.comments,
-      user: review.User.username,
-      breweryName: review.Brewery.name,
-      reviewId: review.id,
-      Brewery: review.Brewery,
-      Beer: review.Beer,
-      User: review.user,
+      beerName: this.props.review.Beer.name,
+      rating: this.props.review.rating,
+      comments: this.props.review.comments,
+      user: this.props.review.User.username,
+      breweryName: this.props.review.Brewery.name,
+      reviewId: this.props.review.id,
+      Brewery: this.props.review.Brewery,
+      Beer: this.props.review.Beer,
+      User: this.props.review.user,
+      review: this.props.review,
     };
   }
   updateReview = (e) => {

@@ -193,7 +193,6 @@ router.put(
           },
         ],
       });
-      console.log(review);
       return res.json({
         review,
       });

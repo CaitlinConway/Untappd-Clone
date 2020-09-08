@@ -1,6 +1,5 @@
 import React from "react";
 import Review from "./Review";
-import EditReview from "./EditReview";
 
 const ReviewFeed = ({ reviews }) => {
   return (
