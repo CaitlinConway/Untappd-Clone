@@ -100,9 +100,7 @@ button {
   right: 50px;
   top: 100px;
   max-width: 30%;
-  border: 1px solid grey;
-  box-shadow: 1px 1px;
-  border-radius: 10px;
+
   background-color: white;
 }
 .review-button-div {
@@ -123,7 +121,7 @@ button {
   max-width: 58%;
   align-items: center;
   align-content: center;
-  border: 1px solid grey;
+
   background-color: white;
 }
 .logout-div {
@@ -138,7 +136,7 @@ button {
 } */
 li {
   padding: 20px;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid rgba(200, 199, 199, 0.664);
   color: orange;
   max-width: 95%;
   list-style: none;
@@ -193,9 +191,7 @@ p {
   right: 100px;
   top: 500px;
   max-width: 30%;
-  border: 1px solid grey;
-  box-shadow: 1px 1px;
-  border-radius: 10px;
+
   background-color: white;
 }
 .hidden {
@@ -208,5 +204,5 @@ p {
   text-align: left;
   width: 90%;
   margin-left: 20px;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid rgba(200, 199, 199, 0.664);
 }
