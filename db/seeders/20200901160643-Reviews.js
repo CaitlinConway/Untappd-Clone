@@ -17,6 +17,7 @@ module.exports = {
       [
         {
           beerId: 1,
+          breweryId: 1,
           userId: 2,
           rating: 4.5,
           comments: "A refreshing cream ale!",

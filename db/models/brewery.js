@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   Brewery.associate = function (models) {
-    Brewery.hasMany(models.Beer, {
+    Brewery.hasMany(models.Review, {
       foreignKey: "breweryId",
     });
   };

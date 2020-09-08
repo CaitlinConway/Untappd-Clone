@@ -6,6 +6,7 @@ import {
 } from "../Actions/reviewActions";
 export default function reviewReducer(state = {}, action) {
   let newState = Object.assign({}, state);
+
   switch (action.type) {
     case ADD_REVIEW:
       newState[action.review.id] = action.review;
@@ -14,7 +15,8 @@ export default function reviewReducer(state = {}, action) {
       delete newState[action.reviewId];
       return newState;
     case UPDATE_REVIEW:
-      return action.review;
+      newState[action.review.id] = action.review;
+      return newState;
     case GET_REVIEWS:
       action.reviews.forEach((review) => {
         // const reviewClone = {};

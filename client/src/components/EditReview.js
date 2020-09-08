@@ -1,30 +1,45 @@
 import React from "react";
 import { TextField } from "@material-ui/core";
-import { addNewReview } from "../store/Actions/reviewActions";
+import { editReview } from "../store/Actions/reviewActions";
 import { connect } from "react-redux";
 
-class AddReview extends React.Component {
+class EditReview extends React.Component {
   constructor(props) {
     super(props);
+    const review = this.props.review;
     this.state = {
-      beerName: "",
-      breweryName: "",
-      rating: "",
-      comments: "",
-      userId: this.props.userId,
+      beerName: review.Beer.name,
+      rating: review.rating,
+      comments: review.comments,
+      userId: review.User.id,
+      breweryName: review.Brewery.name,
+      reviewId: review.id,
+      Brewery: review.Brewery,
+      Beer: review.Beer,
+      User: review.User,
     };
   }
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
-    const { userId, beerName, breweryName, rating, comments } = this.state;
-    this.props.addNewReview(beerName, breweryName, userId, rating, comments);
-    this.setState({
-      beerName: "",
-      breweryName: "",
-      rating: "",
-      comments: "",
-      userId: this.props.userId,
-    });
+    const {
+      userId,
+      beerName,
+      breweryName,
+      rating,
+      comments,
+      reviewId,
+    } = this.state;
+    const review = this.props.review;
+    await this.props.editReview(
+      review,
+      beerName,
+      breweryName,
+      userId,
+      rating,
+      comments
+    );
+    let reviewForm = document.getElementById(`review-form-div-${reviewId}`);
+    reviewForm.style.display = "none";
   };
   updateBeerName = (e) => {
     this.setState({ beerName: e.target.value });
@@ -39,13 +54,13 @@ class AddReview extends React.Component {
     this.setState({ comments: e.target.value });
   };
   render() {
-    const { beerName, breweryName, rating, comments } = this.state;
+    const { beerName, breweryName, rating, comments, reviewId } = this.state;
     return (
-      <div className="add-review-div">
-        <div className="error-container">
+      <div className="edit-review-div">
+        {/* <div className="error-container">
           <ul id="errors" className="errors"></ul>
-        </div>
-        <div className="add-review-form-div">
+        </div> */}
+        <div className="edit-review-form-div">
           <form onSubmit={this.handleSubmit} className="review-form">
             <TextField
               type="text"
@@ -82,8 +97,13 @@ class AddReview extends React.Component {
               fullWidth
             ></TextField>
             <div className="review-button-div">
-              <button type="submit" className="button">
-                Add review!
+              <button
+                onClick={this.handleSubmit}
+                type="submit"
+                className="button"
+                value={reviewId}
+              >
+                Edit review!
               </button>
             </div>
           </form>
@@ -101,8 +121,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addNewReview: (beerName, breweryName, userId, rating, comments) =>
-      dispatch(addNewReview(beerName, breweryName, userId, rating, comments)),
+    editReview: (review, beerName, breweryName, userId, rating, comments) =>
+      dispatch(
+        editReview(review, beerName, breweryName, userId, rating, comments)
+      ),
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(AddReview);
+export default connect(mapStateToProps, mapDispatchToProps)(EditReview);

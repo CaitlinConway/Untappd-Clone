@@ -1,12 +1,14 @@
 import React from "react";
 import Review from "./Review";
 
-const ReviewFeed = ({ reviews }) => {
+const ReviewFeed = ({ reviews, userId }) => {
   return (
     <>
       <ul>
         {Object.values(reviews).map((review) => (
-          <Review review={review} key={review.id}></Review>
+          <div key={review.id}>
+            <Review review={review} userId={userId}></Review>
+          </div>
         ))}
       </ul>
     </>

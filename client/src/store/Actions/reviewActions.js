@@ -45,7 +45,6 @@ export const addNewReview = (
     },
     body: JSON.stringify({ beerName, breweryName, userId, rating, comments }),
   });
-
   res.data = await res.json();
   const { error } = res.data;
   const errorsContainer = document.getElementById("errors");
@@ -61,8 +60,9 @@ export const addNewReview = (
       errorsContainer.appendChild(errorLi);
     }
   }
-  dispatch(addReview(res.data.review));
-
+  if (res.ok) {
+    dispatch(addReview(res.data.review));
+  }
   return res;
 };
 
@@ -86,5 +86,42 @@ export const deleteReview = (review) => async (dispatch) => {
 
   if (res.ok) {
     dispatch(removeReview(review.id));
+  }
+};
+
+export const editReview = (
+  reviewParam,
+  beerName,
+  breweryName,
+  userId,
+  rating,
+  comments
+) => async (dispatch) => {
+  const res = await fetch(`/api/reviews/${reviewParam.id}`, {
+    headers: {
+      _csrf: Cookies.get("_csrf"),
+      "XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
+      "content-type": "application/json",
+    },
+    method: "PUT",
+    body: JSON.stringify({ beerName, breweryName, userId, rating, comments }),
+  });
+  const data = await res.json();
+  const { error } = data;
+  let { review } = data;
+  const errorsContainer = document.getElementById("errors");
+  errorsContainer.innerHTML = "";
+  errorsContainer.style.display = "none";
+  if (error) {
+    const errorList = error.errors;
+    for (let i = 0; i < errorList.length; ++i) {
+      errorsContainer.style.display = "flex";
+      const errorLi = document.createElement("li");
+      errorLi.innerHTML = errorList[i];
+      errorsContainer.appendChild(errorLi);
+    }
+  }
+  if (res.ok) {
+    dispatch(updateReview(review));
   }
 };
