@@ -47,7 +47,10 @@ class Review extends React.Component {
           <p>Rating: {rating}</p>
           <p>{comments}</p>
           <div id={`review-form-div-${this.props.review.id}`} hidden>
-            <EditReview review={this.props.review}></EditReview>
+            <EditReview
+              review={this.props.review}
+              userId={this.props.user}
+            ></EditReview>
           </div>
           <div className="feed-buttons">
             <button onClick={this.updateReview} value={reviewId}>
@@ -63,6 +66,7 @@ class Review extends React.Component {
 const mapStateToProps = (state) => {
   return {
     reviews: state.reviews,
+    userId: state.auth.id,
   };
 };
 const mapDispatchToProps = (dispatch) => {

@@ -168,3 +168,17 @@ p {
 #body {
   background-color: rgb(250, 220, 178);
 }
+#user-tile {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 10px;
+  position: fixed;
+  right: 100px;
+  top: 500px;
+  max-width: 30%;
+  border: 2px solid orange;
+  box-shadow: 2px 2px;
+  border-radius: 10px;
+  background-color: white;
+}

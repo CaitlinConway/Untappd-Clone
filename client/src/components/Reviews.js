@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { getAllReviews } from "../store/Actions/reviewActions";
 import ReviewFeed from "./ReviewFeed";
 import AddReview from "./AddReview";
-
+import UserTile from "./UserTile";
 class Reviews extends React.Component {
   componentDidMount() {
     this.props.getAllReviews();
@@ -27,16 +27,22 @@ class Reviews extends React.Component {
     }
   }
   render() {
+    debugger;
     return (
       <>
         <ReviewFeed reviews={this.props.reviews} />
         <AddReview reviews={this.props.reviews} />
+        <UserTile
+          reviews={this.props.reviews}
+          userId={this.props.userId}
+        ></UserTile>
       </>
     );
   }
 }
 const mapStateToProps = (state) => ({
   reviews: state.reviews,
+  userId: state.auth.id,
 });
 
 const mapDispatchToProps = (dispatch) => {
