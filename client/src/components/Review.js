@@ -14,8 +14,9 @@ class Review extends React.Component {
       reviewId: this.props.review.id,
       Brewery: this.props.review.Brewery,
       Beer: this.props.review.Beer,
-      User: this.props.review.user,
+      reviewUserId: this.props.review.userId,
       review: this.props.review,
+      userId: this.props.userId,
     };
   }
   updateReview = (e) => {
@@ -36,7 +37,12 @@ class Review extends React.Component {
       user,
       breweryName,
       reviewId,
+      userId,
+      reviewUserId,
     } = this.state;
+    let shouldHide;
+    shouldHide = userId !== reviewUserId ? "true" : "";
+    debugger;
     return (
       <>
         <li>
@@ -52,10 +58,21 @@ class Review extends React.Component {
             ></EditReview>
           </div>
           <div className="feed-buttons">
-            <button onClick={this.updateReview} value={reviewId}>
+            <button
+              id={`update-review-${reviewId}`}
+              onClick={this.updateReview}
+              value={reviewId}
+              className={shouldHide ? "hidden" : ""}
+            >
               Update Review
             </button>
-            <button onClick={this.deleteReview}>Delete Review</button>
+            <button
+              id={`delete-review-${reviewId}`}
+              onClick={this.deleteReview}
+              className={shouldHide ? "hidden" : ""}
+            >
+              Delete Review
+            </button>
           </div>
         </li>
       </>
@@ -66,6 +83,7 @@ const mapStateToProps = (state) => {
   return {
     reviews: state.reviews,
     userId: state.auth.id,
+    shouldHide: state.shouldHide,
   };
 };
 const mapDispatchToProps = (dispatch) => {

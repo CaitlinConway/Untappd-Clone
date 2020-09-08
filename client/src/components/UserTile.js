@@ -3,7 +3,6 @@ import React from "react";
 const UserTile = ({ reviews, userId }) => {
   let total = 0;
   Object.values(reviews).map((review) => {
-    debugger;
     if (review.userId === userId) {
       total++;
     }

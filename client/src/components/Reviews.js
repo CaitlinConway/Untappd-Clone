@@ -27,10 +27,9 @@ class Reviews extends React.Component {
     }
   }
   render() {
-    debugger;
     return (
       <>
-        <ReviewFeed reviews={this.props.reviews} />
+        <ReviewFeed reviews={this.props.reviews} userId={this.props.userId} />
         <AddReview reviews={this.props.reviews} />
         <UserTile
           reviews={this.props.reviews}
