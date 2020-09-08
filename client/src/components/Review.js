@@ -43,7 +43,6 @@ class Review extends React.Component {
           <p>
             {user} is drinking a {beerName} at {breweryName}
           </p>
-          <p>{comments}</p>
           <p>Rating: {rating}</p>
           <p>{comments}</p>
           <div id={`review-form-div-${this.props.review.id}`} hidden>
