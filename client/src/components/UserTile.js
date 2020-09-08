@@ -1,10 +1,10 @@
 import React from "react";
 
 const UserTile = ({ reviews, userId }) => {
-  debugger;
   let total = 0;
   Object.values(reviews).map((review) => {
-    if ((review.userId = userId)) {
+    debugger;
+    if (review.userId === userId) {
       total++;
     }
   });
