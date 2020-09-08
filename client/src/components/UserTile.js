@@ -4,7 +4,7 @@ const UserTile = ({ reviews, userId }) => {
   debugger;
   let total = 0;
   Object.values(reviews).map((review) => {
-    if ((review.User.id = userId)) {
+    if ((review.userId = userId)) {
       total++;
     }
   });
